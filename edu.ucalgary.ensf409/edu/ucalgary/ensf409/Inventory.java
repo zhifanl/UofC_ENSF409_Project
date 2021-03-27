@@ -67,7 +67,7 @@ public class Inventory {
     	}
     }
     
-    public LinkedList<> selectAllFromTable(String tableName) {
+    public LinkedList selectAllFromTable(String tableName) {
     	LinkedList result = null;
     	Statement Stmt = null;
     	
@@ -78,15 +78,15 @@ public class Inventory {
         		Chair temp = new Chair ();
         		results = Stmt.executeQuery("SELECT * FROM CHAIR");
         		while(results.next()) {
-        			Chair.setID() = results.getString("ID");
-        			Chair.setType() = results.getString("Type");
-        			Chair.setLegs() = results.getString("Legs");
-        			Chair.setArms() = results.getString("Arms");
-        			Chair.setSeat() = results.getString("Seat");
-        			Chair.setCushion() = results.getString("Cushion");
-        			Chair.setPrice() = results.getInt("Price");
-        			Chair.setManuID() = results.getString("ManuID");
-        			result.append(temp);
+        			temp.setID(results.getString("ID"));
+        			temp.setType(results.getString("Type"));
+        			temp.setLegs(results.getString("Legs"));
+        			temp.setArms(results.getString("Arms"));
+        			temp.setSeat(results.getString("Seat"));
+        			temp.setCushion(results.getString("Cushion"));
+        			temp.setPrice(results.getInt("Price"));
+        			temp.setManuID(results.getString("ManuID"));
+        			result.add(temp);
         		}
         	}catch (SQLException e) {
     			e.printStackTrace();
@@ -110,14 +110,14 @@ public class Inventory {
         		Desk temp = new Desk ();
         		results = Stmt.executeQuery("SELECT * FROM DESK");
         		while(results.next()) {
-        			Desk.setID() = results.getString("ID");
-        			Desk.setType() = results.getString("Type");
-        			Desk.setLegs() = results.getString("Legs");
-        			Desk.setTop() = results.getString("Top");
-        			Desk.setDrawer() = results.getString("Drawer");
-        			Desk.setPrice() = results.getInt("Price");
-        			Desk.setManuID() = results.getString("ManuID");
-        			result.append(temp);
+        			temp.setID(results.getString("ID"));
+        			temp.setType(results.getString("Type"));
+        			temp.setLegs(results.getString("Legs"));
+        			temp.setTop(results.getString("Top"));
+        			temp.setDrawer(results.getString("Drawer"));
+        			temp.setPrice(results.getInt("Price"));
+        			temp.setManuID(results.getString("ManuID"));
+        			result.add(temp);
         		}
         	}catch (SQLException e) {
     			e.printStackTrace();
@@ -141,14 +141,14 @@ public class Inventory {
         		Filing temp = new Filing ();
         		results = Stmt.executeQuery("SELECT * FROM FILING");
         		while(results.next()) {
-        			Filing.setID() = results.getString("ID");
-        			Filing.setType() = results.getString("Type");
-        			Filing.setRails() = results.getString("Rails");
-        			Filing.setDrawers() = results.getString("Drawers");
-        			Filing.setCabinet() = results.getString("Cabinet");
-        			Filing.setPrice() = results.getInt("Price");
-        			Filing.setManuID() = results.getString("ManuID");
-        			result.append(temp);
+        			temp.setID(results.getString("ID"));
+        			temp.setType(results.getString("Type"));
+        			temp.setRails(results.getString("Rails"));
+        			temp.setDrawers(results.getString("Drawers"));
+        			temp.setCabinet(results.getString("Cabinet"));
+        			temp.setPrice(results.getInt("Price"));
+        			temp.setManuID(results.getString("ManuID"));
+        			result.add(temp);
         		}
         	}catch (SQLException e) {
     			e.printStackTrace();
@@ -172,13 +172,13 @@ public class Inventory {
         		Lamp temp = new Lamp ();
         		results = Stmt.executeQuery("SELECT * FROM LAMP");
         		while(results.next()) {
-        			Lamp.setID() = results.getString("ID");
-        			Lamp.setType() = results.getString("Type");
-        			Lamp.setBase() = results.getString("Base");
-        			Lamp.setBulb() = results.getString("Bulb");
-        			Lamp.setPrice() = results.getInt("Price");
-        			Lamp.setManuID() = results.getString("ManuID");
-        			result.append(temp);
+        			temp.setID(results.getString("ID"));
+        			temp.setType(results.getString("Type"));
+        			temp.setBase(results.getString("Base"));
+        			temp.setBulb(results.getString("Bulb"));
+        			temp.setPrice(results.getInt("Price"));
+        			temp.setManuID(results.getString("ManuID"));
+        			result.add(temp);
         		}
         	}catch (SQLException e) {
     			e.printStackTrace();
@@ -203,11 +203,11 @@ public class Inventory {
         		Manufacturer temp = new Manufacturer ();
         		results = Stmt.executeQuery("SELECT * FROM MAUNFACTURER");
         		while(results.next()) {
-        			Manufacturer.setManuID() = results.getString("ManuID");
-        			Manufacturer.setName() = results.getString("Name");
-        			Manufacturer.setPhone() = results.getString("Phone");
-        			Manufacturer.setProvince() = results.getString("Province");
-        			result.append(temp);
+        			temp.setManuID(results.getString("ManuID"));
+        			temp.setName(results.getString("Name"));
+        			temp.setPhone(results.getString("Phone"));
+        			temp.setProvince(results.getString("Province"));
+        			result.add(temp);
         		}
         	}catch (SQLException e) {
     			e.printStackTrace();
@@ -224,10 +224,7 @@ public class Inventory {
     		}
     	}
     	
-    	else {
-    		return null;
-    	}
-    	
+    	return result;
     }
     
     public LinkedList selectTypeFromCategory(String category, String type){
@@ -235,8 +232,8 @@ public class Inventory {
     		LinkedList<Chair> temp = this.selectAllFromTable(category);
     		LinkedList<Chair> result = new LinkedList<Chair> ();
     		for(int i=0; i<temp.size(); i++) {
-    			if(temp.getType().matches(type)) {
-    				result.append(temp.get(i));
+    			if(temp.get(i).getType().matches(type)) {
+    				result.add(temp.get(i));
     			}
     		}
     		return result;
@@ -246,8 +243,8 @@ public class Inventory {
     		LinkedList<Desk> temp = this.selectAllFromTable(category);
     		LinkedList<Desk> result = new LinkedList<Desk> ();
     		for(int i=0; i<temp.size(); i++) {
-    			if(temp.getType().matches(type)) {
-    				result.append(temp.get(i));
+    			if(temp.get(i).getType().matches(type)) {
+    				result.add(temp.get(i));
     			}
     		}
     		return result;
@@ -257,8 +254,8 @@ public class Inventory {
     		LinkedList<Lamp> temp = this.selectAllFromTable(category);
     		LinkedList<Lamp> result = new LinkedList<Lamp> ();
     		for(int i=0; i<temp.size(); i++) {
-    			if(temp.getType().matches(type)) {
-    				result.append(temp.get(i));
+    			if(temp.get(i).getType().matches(type)) {
+    				result.add(temp.get(i));
     			}
     		}
     		return result;
@@ -268,8 +265,8 @@ public class Inventory {
     		LinkedList<Filing> temp = this.selectAllFromTable(category);
     		LinkedList<Filing> result = new LinkedList<Filing> ();
     		for(int i=0; i<temp.size(); i++) {
-    			if(temp.getType().matches(type)) {
-    				result.append(temp.get(i));
+    			if(temp.get(i).getType().matches(type)) {
+    				result.add(temp.get(i));
     			}
     		}
     		return result;
@@ -278,6 +275,7 @@ public class Inventory {
     	else {
     		return null;
     	}
+    }
     
     public void deleteFromTable(String tableName, String ID) {
     	if(!tableName.matches("CHAIR") && !tableName.matches("LAMP") && !tableName.matches("DESK") && !tableName.matches("FILING")) {
