@@ -75,9 +75,9 @@ public class Inventory {
     		try {
         		Stmt = dbConnect.createStatement();
         		result = new LinkedList<Chair> ();
-        		Chair temp = new Chair ();
         		results = Stmt.executeQuery("SELECT * FROM CHAIR");
         		while(results.next()) {
+        			Chair temp = new Chair ();
         			temp.setID(results.getString("ID"));
         			temp.setType(results.getString("Type"));
         			temp.setLegs(results.getString("Legs"));
@@ -87,6 +87,7 @@ public class Inventory {
         			temp.setPrice(results.getInt("Price"));
         			temp.setManuID(results.getString("ManuID"));
         			result.add(temp);
+
         		}
         	}catch (SQLException e) {
     			e.printStackTrace();
@@ -107,9 +108,9 @@ public class Inventory {
     		try {
         		Stmt = dbConnect.createStatement();
         		result = new LinkedList<Desk> ();
-        		Desk temp = new Desk ();
         		results = Stmt.executeQuery("SELECT * FROM DESK");
         		while(results.next()) {
+        			Desk temp = new Desk ();
         			temp.setID(results.getString("ID"));
         			temp.setType(results.getString("Type"));
         			temp.setLegs(results.getString("Legs"));
@@ -138,9 +139,9 @@ public class Inventory {
     		try {
         		Stmt = dbConnect.createStatement();
         		result = new LinkedList<Filing> ();
-        		Filing temp = new Filing ();
         		results = Stmt.executeQuery("SELECT * FROM FILING");
         		while(results.next()) {
+        			Filing temp = new Filing ();
         			temp.setID(results.getString("ID"));
         			temp.setType(results.getString("Type"));
         			temp.setRails(results.getString("Rails"));
@@ -169,9 +170,9 @@ public class Inventory {
     		try {
         		Stmt = dbConnect.createStatement();
         		result = new LinkedList<Lamp> ();
-        		Lamp temp = new Lamp ();
         		results = Stmt.executeQuery("SELECT * FROM LAMP");
         		while(results.next()) {
+        			Lamp temp = new Lamp ();
         			temp.setID(results.getString("ID"));
         			temp.setType(results.getString("Type"));
         			temp.setBase(results.getString("Base"));
@@ -200,9 +201,9 @@ public class Inventory {
     		try {
         		Stmt = dbConnect.createStatement();
         		result = new LinkedList<Manufacturer> ();
-        		Manufacturer temp = new Manufacturer ();
         		results = Stmt.executeQuery("SELECT * FROM MAUNFACTURER");
         		while(results.next()) {
+        			Manufacturer temp = new Manufacturer ();
         			temp.setManuID(results.getString("ManuID"));
         			temp.setName(results.getString("Name"));
         			temp.setPhone(results.getString("Phone"));
@@ -303,4 +304,26 @@ public class Inventory {
         	}
     	}
     }
+    
+    /*
+    public static void main(String[] args) {
+    	Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","tianfan","Wenyan3524");
+    	myJDBC.initializeConnection();
+    	
+    	LinkedList <Chair> test1 = myJDBC.selectAllFromTable("CHAIR");
+    	for(int i=0 ; i<test1.size(); i++) {
+    		System.out.println(test1.get(i).getID() + " " + test1.get(i).getType() + " " + test1.get(i).getLegs()
+    						+ " " + test1.get(i).getArms() + " " + test1.get(i).getSeat() + " " + test1.get(i).getCushion()
+    						+ " " + test1.get(i).getPrice() + " " + test1.get(i).getManuID() + "\n");
+    	}
+    	
+    	LinkedList <Chair> test2 = myJDBC.selectTypeFromCategory("CHAIR","Task");
+    	for(int i=0 ; i<test2.size(); i++) {
+    		System.out.println(test2.get(i).getID() + " " + test2.get(i).getType() + " " + test2.get(i).getLegs()
+    						+ " " + test2.get(i).getArms() + " " + test2.get(i).getSeat() + " " + test2.get(i).getCushion()
+    						+ " " + test2.get(i).getPrice() + " " + test2.get(i).getManuID() + "\n");
+    	}
+    }
+    
+    */
 }
