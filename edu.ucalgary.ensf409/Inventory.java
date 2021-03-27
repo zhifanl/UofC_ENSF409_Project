@@ -67,7 +67,7 @@ public class Inventory {
     	}
     }
     
-    public LinkedList<String[]> selectAllFromTable(String tableName) {
+    public LinkedList<> selectAllFromTable(String tableName) {
     	LinkedList result = null;
     	Statement Stmt = null;
     	
@@ -84,7 +84,7 @@ public class Inventory {
         			Chair.setArms() = results.getString("Arms");
         			Chair.setSeat() = results.getString("Seat");
         			Chair.setCushion() = results.getString("Cushion");
-        			Chair.setPrice() = results.getString("Price");
+        			Chair.setPrice() = results.getInt("Price");
         			Chair.setManuID() = results.getString("ManuID");
         			result.append(temp);
         		}
@@ -115,7 +115,7 @@ public class Inventory {
         			Desk.setLegs() = results.getString("Legs");
         			Desk.setTop() = results.getString("Top");
         			Desk.setDrawer() = results.getString("Drawer");
-        			Desk.setPrice() = results.getString("Price");
+        			Desk.setPrice() = results.getInt("Price");
         			Desk.setManuID() = results.getString("ManuID");
         			result.append(temp);
         		}
@@ -146,7 +146,7 @@ public class Inventory {
         			Filing.setRails() = results.getString("Rails");
         			Filing.setDrawers() = results.getString("Drawers");
         			Filing.setCabinet() = results.getString("Cabinet");
-        			Filing.setPrice() = results.getString("Price");
+        			Filing.setPrice() = results.getInt("Price");
         			Filing.setManuID() = results.getString("ManuID");
         			result.append(temp);
         		}
@@ -176,7 +176,7 @@ public class Inventory {
         			Lamp.setType() = results.getString("Type");
         			Lamp.setBase() = results.getString("Base");
         			Lamp.setBulb() = results.getString("Bulb");
-        			Lamp.setPrice() = results.getString("Price");
+        			Lamp.setPrice() = results.getInt("Price");
         			Lamp.setManuID() = results.getString("ManuID");
         			result.append(temp);
         		}
@@ -229,6 +229,55 @@ public class Inventory {
     	}
     	
     }
+    
+    public LinkedList selectTypeFromCategory(String category, String type){
+    	if(category.matches("CHAIR")) {
+    		LinkedList<Chair> temp = this.selectAllFromTable(category);
+    		LinkedList<Chair> result = new LinkedList<Chair> ();
+    		for(int i=0; i<temp.size(); i++) {
+    			if(temp.getType().matches(type)) {
+    				result.append(temp.get(i));
+    			}
+    		}
+    		return result;
+    	}
+    	
+    	else if(category.matches("DESK")) {
+    		LinkedList<Desk> temp = this.selectAllFromTable(category);
+    		LinkedList<Desk> result = new LinkedList<Desk> ();
+    		for(int i=0; i<temp.size(); i++) {
+    			if(temp.getType().matches(type)) {
+    				result.append(temp.get(i));
+    			}
+    		}
+    		return result;
+    	}
+    	
+    	else if(category.matches("LAMP")) {
+    		LinkedList<Lamp> temp = this.selectAllFromTable(category);
+    		LinkedList<Lamp> result = new LinkedList<Lamp> ();
+    		for(int i=0; i<temp.size(); i++) {
+    			if(temp.getType().matches(type)) {
+    				result.append(temp.get(i));
+    			}
+    		}
+    		return result;
+    	}
+    	
+    	else if(category.matches("FILING")) {
+    		LinkedList<Filing> temp = this.selectAllFromTable(category);
+    		LinkedList<Filing> result = new LinkedList<Filing> ();
+    		for(int i=0; i<temp.size(); i++) {
+    			if(temp.getType().matches(type)) {
+    				result.append(temp.get(i));
+    			}
+    		}
+    		return result;
+    	}
+    	
+    	else {
+    		return null;
+    	}
     
     public void deleteFromTable(String tableName, String ID) {
     	if(!tableName.matches("CHAIR") && !tableName.matches("LAMP") && !tableName.matches("DESK") && !tableName.matches("FILING")) {
