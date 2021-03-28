@@ -6,39 +6,137 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class SupplyChain{
-
-    public void execute(String input){
+	String outputFileName;
+	String inputFileName;
+    public int execute(String input){
         input = input.replaceAll("[^0-9a-zA-Z ]", " ");
         //Remove all chars except "0-9","A-Z","a-z";
-        String inputArray[] = inputCommand.split("\\s+");
+        input=input.toUpperCase();
+        String inputArray[] = input.split("\\s+");
 
-        LinkedList<T> searchResults=Database(inputArray);
-
-        if(searchResults.instanceOf(LinkedList<Chair>)){
-            LinkedList<Chair>results=new LinkedList<>();
-                results=analyzeData.findCheapestFurniture(searchResults);
+        
+        
+        int requiredTimes=Integer.parseInt(inputArray[2]);
+        Combination result=null;
+        
+        Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","tianfan","Wenyan3524");
+    	myJDBC.initializeConnection();
+    	
+        LinkedList<String>suggestedManufacturer=new LinkedList<>();
+        LinkedList<Manufacturer>searchedManu=myJDBC.selectAllFromTable("MANUFACTURER");
+		LinkedList<Combination>outputResults=new LinkedList<>();
+        while(requiredTimes!=0) {
+        
+    	if(inputArray[1].equals("CHAIR")) {
+        LinkedList<Chair>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
+        if(searchedResults==null) {
+        	return -1;
         }
-        if(searchResults.instanceOf(LinkedList<Desk>)){
-            LinkedList<Desk>results=new LinkedList<>();
-            results=analyzeData.findCheapestFurniture(searchResults);
+        Algorithm obj=new Algorithm();
+        result=obj.findCheapestSet(searchedResults);
+        if(result==null&&searchedResults!=null) {
+    	   for(int i=0;i<searchedManu.size();i++ ) {
+    		   if(searchedManu.get(i).getManuID().equals(searchedResults.get(0).getManuID())) {
+    			   suggestedManufacturer.add(searchedManu.get(i).getName());
+    			   
+    		   }
+    	   }
+    	   
+    	   writeFileException(suggestedManufacturer);
+    	   return -1;
+    	}
+        outputResults.add(result);
+    	}
+       
+    	if(inputArray[1].equals("DESK")) {
+            LinkedList<Desk>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
+            if(searchedResults==null) {
+            	return -1;
+            }
+            Algorithm obj=new Algorithm();
+           result=obj.findCheapestSet(searchedResults);
+           if(result==null&&searchedResults!=null) {
+        	   for(int i=0;i<searchedManu.size();i++ ) {
+        		   if(searchedManu.get(i).getManuID().equals(searchedResults.get(0).getManuID())) {
+        			   suggestedManufacturer.add(searchedManu.get(i).getName());
+        		   }
+        	   }
+        	   writeFileException(suggestedManufacturer);
+        	   return -1;
+        	}
+           outputResults.add(result);
+            
+        	}
+    	if(inputArray[1].equals("LAMP")) {
+            LinkedList<Lamp>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
+            if(searchedResults==null) {
+            	return -1;
+            }
+            Algorithm obj=new Algorithm();
+           result=obj.findCheapestSet(searchedResults);
+           if(result==null&&searchedResults!=null) {
+        	   for(int i=0;i<searchedManu.size();i++ ) {
+        		   if(searchedManu.get(i).getManuID().equals(searchedResults.get(0).getManuID())) {
+        			   suggestedManufacturer.add(searchedManu.get(i).getName());
+        		   }
+        	   }
+        	   writeFileException(suggestedManufacturer);
+        	   return -1;
+        	}
+           outputResults.add(result);
+            
+        	}
+    	if(inputArray[1].equals("FILING")) {
+            LinkedList<Filing>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
+            if(searchedResults==null) {
+            	return -1;
+            }
+            Algorithm obj=new Algorithm();
+           result=obj.findCheapestSet(searchedResults);
+           if(result==null&&searchedResults!=null) {
+        	   for(int i=0;i<searchedManu.size();i++ ) {
+        		   if(searchedManu.get(i).getManuID().equals(searchedResults.get(0).getManuID())) {
+        			   suggestedManufacturer.add(searchedManu.get(i).getName());
+        		   		}
+        	   		}
+        	   writeFileException(suggestedManufacturer);
+        	   return -1;
+            
+        		}
+           outputResults.add(result);
+            
+        	}
 
+    	requiredTimes--;
         }
-        if(searchResults.instanceOf(LinkedList<Lamp>)){
-            LinkedList<Lamp>results=new LinkedList<>();
-            results=analyzeData.findCheapestFurniture(searchResults);
-
-        }
-        if(searchResults.instanceOf(LinkedList<Filing>)){
-            LinkedList<Filing>results=new LinkedList<>();
-            results=analyzeData.findCheapestFurniture(searchResults);
-
-        }
-
+        
+        writeFile(outputResults);
+        
     }
 
+    public void writeFile(LinkedList<Combination>result){
+        try{
+            FileWriter myWriter=new FileWriter(outputFileName,true);
+            File f=new File(outputFileName);
 
+
+                if(f.length()!=0){
+                    myWriter.write("\n");
+                }
+                
+                myWriter.write(output);
+                myWriter.flush();
+            }
+
+            myWriter.close();
+        }
+        catch (IOException e) {
+             System.out.println("An error occurred.");
+        }
+    }
     public void readInput(String inputFileName) {
         File f = null;
         try {
