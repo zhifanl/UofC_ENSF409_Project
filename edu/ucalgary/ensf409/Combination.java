@@ -1,10 +1,10 @@
 package edu.ucalgary.ensf409;
 
 public class Combination {
-	String ID1 = new String();
-	String ID2 = new String();
-	String ID3 = new String();
-	String ID4 = new String();
+	String ID1 = null;
+	String ID2 = null;
+	String ID3 = null;
+	String ID4 = null;
 	int price;
 	
 	public Combination() {

@@ -100,6 +100,14 @@ public class Inventory {
     					e.printStackTrace();
     				}
     			}
+    			if(results!=null) {
+    				try {
+    					results.close();
+    				} catch (SQLException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+    			}
     		
     		}
     	}
@@ -126,6 +134,14 @@ public class Inventory {
     			if(Stmt!=null) {
     				try {
     					Stmt.close();
+    				} catch (SQLException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+    			}
+    			if(results!=null) {
+    				try {
+    					results.close();
     				} catch (SQLException e) {
     					// TODO Auto-generated catch block
     					e.printStackTrace();
@@ -162,6 +178,14 @@ public class Inventory {
     					e.printStackTrace();
     				}
     			}
+    			if(results!=null) {
+    				try {
+    					results.close();
+    				} catch (SQLException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+    			}
     		
     		}
     	}
@@ -192,6 +216,14 @@ public class Inventory {
     					e.printStackTrace();
     				}
     			}
+    			if(results!=null) {
+    				try {
+    					results.close();
+    				} catch (SQLException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+    			}
     		
     		}
     	}
@@ -201,7 +233,7 @@ public class Inventory {
     		try {
         		Stmt = dbConnect.createStatement();
         		result = new LinkedList<Manufacturer> ();
-        		results = Stmt.executeQuery("SELECT * FROM MAUNFACTURER");
+        		results = Stmt.executeQuery("SELECT * FROM MANUFACTURER");
         		while(results.next()) {
         			Manufacturer temp = new Manufacturer ();
         			temp.setManuID(results.getString("ManuID"));
@@ -216,6 +248,14 @@ public class Inventory {
     			if(Stmt!=null) {
     				try {
     					Stmt.close();
+    				} catch (SQLException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+    			}
+    			if(results!=null) {
+    				try {
+    					results.close();
     				} catch (SQLException e) {
     					// TODO Auto-generated catch block
     					e.printStackTrace();
