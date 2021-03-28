@@ -124,7 +124,7 @@ public class SupplyChain{
             for(int i=0;i<suggestedManufacturer.size();i++) {
             	output+=suggestedManufacturer.get(i)+", ";
             }
-            
+            output=output.substring(0,output.length()-2);
             
     	}catch(IOException e) {
             System.out.println("An error occurred.");
