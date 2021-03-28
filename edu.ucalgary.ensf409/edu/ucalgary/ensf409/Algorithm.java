@@ -139,10 +139,10 @@ public class Algorithm {
 			for(int j=i+1; j<list.size(); j++) {
 				for(int k=j+1; k<list.size(); k++) {
 					for(int m=k+1; m<list.size();m++) {
-						Chair tem1 = list.get(i);
-						Chair tem2 = list.get(j);
-						Chair tem3 = list.get(k);
-						Chair tem4 = list.get(m);
+						Furniture tem1 = list.get(i);
+						Furniture tem2 = list.get(j);
+						Furniture tem3 = list.get(k);
+						Furniture tem4 = list.get(m);
 						int totalPrice = tem1.getPrice() + tem2.getPrice() + tem3.getPrice() +tem4.getPrice();
 						if(isMatch(tem1,tem2,tem3,tem4) && result != null) {
 							if(result.getPrice() > totalPrice) {
@@ -165,7 +165,7 @@ public class Algorithm {
 			if(list.get(0) instanceof Lamp) {
 				result = loop2Times(list);
 			}
-			else if((list.get(0) instanceof Desk || list.get(0) instanceof Filing) {
+			else if((list.get(0) instanceof Desk || list.get(0) instanceof Filing)) {
 				result = loop3Times(list);
 			}
 			else if (list.get(0) instanceof Chair) {
