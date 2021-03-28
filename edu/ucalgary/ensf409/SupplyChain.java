@@ -184,6 +184,9 @@ public class SupplyChain{
              System.out.println("An error occurred.");
         }
     }
+/*
+* WriteFileError function writes an "error" in the output file.
+*/
     public void writeFileError(String error) {
     	try{
             FileWriter myWriter=new FileWriter(outputFileName,true);
