@@ -24,4 +24,6 @@ After having the algorithm bring you back the best choice, the system will proce
 
 One thing that is hard to solve is that, when dealing with multiply orders, sometimes only one or few orders can be processed, not all can be processed since the rest of them is out of stock. So  we design to solve this problem by our programming knowledge. We made the system to process as many orders as it could, and also when something is out of stock, and database information will behave the same way too. it will also search for the manufacturer that could produce this type of product, and write it into the output file.
 
+Also, We are employing Junit testing in the project: there are so far 17 test cases that test the algorithm we wrote and check for proper throw of exceptions. And so far the system can pass all the test cases and input output files with the expected result. 
+
 That is how this program is designed, hope you will enjoy it.
