@@ -50,6 +50,10 @@ public class SupplyChain{
     	   return -1;
     	}
         outputResults.add(result);
+        myJDBC.deleteFromTable("CHAIR", result.getID1());
+        if(result.getID2()!=null) {myJDBC.deleteFromTable("CHAIR", result.getID2());}
+        if(result.getID3()!=null) {myJDBC.deleteFromTable("CHAIR", result.getID3());}
+        if(result.getID4()!=null) {myJDBC.deleteFromTable("CHAIR", result.getID4());}
     	}
        
     	if(inputArray[1].equals("DESK")) {
@@ -69,6 +73,10 @@ public class SupplyChain{
         	   return -1;
         	}
            outputResults.add(result);
+           myJDBC.deleteFromTable("DESK", result.getID1());
+           if(result.getID2()!=null) {myJDBC.deleteFromTable("DESK", result.getID2());}
+           if(result.getID3()!=null) {myJDBC.deleteFromTable("DESK", result.getID3());}
+           if(result.getID4()!=null) {myJDBC.deleteFromTable("DESK", result.getID4());}
             
         	}
     	if(inputArray[1].equals("LAMP")) {
@@ -88,6 +96,10 @@ public class SupplyChain{
         	   return -1;
         	}
            outputResults.add(result);
+           myJDBC.deleteFromTable("LAMP", result.getID1());
+           if(result.getID2()!=null) {myJDBC.deleteFromTable("LAMP", result.getID2());}
+           if(result.getID3()!=null) {myJDBC.deleteFromTable("LAMP", result.getID3());}
+           if(result.getID4()!=null) {myJDBC.deleteFromTable("LAMP", result.getID4());}
             
         	}
     	if(inputArray[1].equals("FILING")) {
@@ -108,10 +120,15 @@ public class SupplyChain{
             
         		}
            outputResults.add(result);
-            
+           myJDBC.deleteFromTable("FILING", result.getID1());
+           if(result.getID2()!=null) {myJDBC.deleteFromTable("FILING", result.getID2());}
+           if(result.getID3()!=null) {myJDBC.deleteFromTable("FILING", result.getID3());}
+           if(result.getID4()!=null) {myJDBC.deleteFromTable("FILING", result.getID4());}
+           
         	}
-
+    	
     	requiredTimes--;
+    	
         }
         
         writeFile(outputResults);
