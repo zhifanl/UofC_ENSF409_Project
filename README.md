@@ -8,3 +8,4 @@ Our Project is in main branch.
 
 UML Diagram is here: 
 https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/uml.png
+![...](https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/uml.png)
