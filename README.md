@@ -6,6 +6,14 @@ Team Members: Taimor Abrar, Tianfan Zhou, Manpreet Singh, Zhifan Li
 
 Our Project is in main branch.
 
+All the java file is in edu/ucalgary/ensf409
+
+# Run the program by cloning the code,
+# javac edu/ucalgary/ensf409/MySystem
+# java edu/ucalgary/ensf409/MySystem inputFileName outputFileName
+
+where inputFileName should already exist in the working directory, and outputFileName can be named the way you want, and it will be produced in the working directory.
+
 UML Diagram is here: 
 https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/uml.png
 ![...](https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/uml.png)
