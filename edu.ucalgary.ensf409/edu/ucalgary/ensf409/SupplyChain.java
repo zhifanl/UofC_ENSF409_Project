@@ -11,6 +11,7 @@ import java.util.LinkedList;
 public class SupplyChain{
 	String outputFileName;
 	String inputFileName;
+	String inputString;
     public int execute(String input){
         input = input.replaceAll("[^0-9a-zA-Z ]", " ");
         //Remove all chars except "0-9","A-Z","a-z";
@@ -116,26 +117,60 @@ public class SupplyChain{
         writeFile(outputResults);
         
     }
-
+    public void writeFileException( LinkedList<String>suggestedManufacturer) {
+    	try{
+            FileWriter myWriter=new FileWriter(outputFileName,true);
+            String output="Order cannot be fulfilled based on current inventory. Suggested manufacturers are ";
+            for(int i=0;i<suggestedManufacturer.size();i++) {
+            	output+=suggestedManufacturer.get(i)+", ";
+            }
+            output=output.substring(0,output.length()-2);
+            
+    	}catch(IOException e) {
+            System.out.println("An error occurred.");
+       }
+   
+            
+    }
     public void writeFile(LinkedList<Combination>result){
         try{
             FileWriter myWriter=new FileWriter(outputFileName,true);
             File f=new File(outputFileName);
-
-
-                if(f.length()!=0){
-                    myWriter.write("\n");
-                }
-                
-                myWriter.write(output);
-                myWriter.flush();
+            String output=new String();
+            output+="Furniture Order Form"+"\n"+"\n";
+            output+="Faculty Name:"+"\n";
+            output+="Contact:"+"\n";
+            output+="Date:"+"\n"+"\n";
+            output+="Original Request: "+inputString+"\n"+"\n";
+            output+="Items Ordered"+"\n";
+            myWriter.write(output);
+            myWriter.flush();
+            String order=null;
+            for(int i=0;i<result.size();i++) {
+            	order+="ID: "+result.get(i).getID1()+'\n';
+            	if(result.get(i).getID2()!=null) {order+="ID: "+result.get(i).getID2()+'\n';}
+            	if(result.get(i).getID3()!=null) {order+="ID: "+result.get(i).getID3()+'\n';}
+            	if(result.get(i).getID4()!=null) {order+="ID: "+result.get(i).getID4()+'\n';}
+            	order+="\n";
+            	order+="Total Price: "+result.get(i).getPrice();
+               
             }
+            myWriter.write(order);
+            myWriter.flush();
 
             myWriter.close();
         }
         catch (IOException e) {
              System.out.println("An error occurred.");
         }
+    }
+    public void writeFileError(String error) {
+    	try{
+            FileWriter myWriter=new FileWriter(outputFileName,true);
+            myWriter.write(error);
+    	}catch(IOException e) {
+            System.out.println("An error occurred.");
+       }
     }
     public void readInput(String inputFileName) {
         File f = null;
@@ -154,10 +189,16 @@ public class SupplyChain{
             String inputCommand = sc.readLine();
             String REGEX="(User request){1}[:]{1}[\\S]+[,]{1}[\\S]+";
             if(inputCommand.matches(REGEX)){
+            	int index=inputCommand.indexOf(":")+2;
+            	inputCommand=inputCommand.substring(index);
+            	inputString=inputCommand;
                 int i=execute(inputCommand);
+//                if(i==-1) {
+//                	return;
+//                }
             }
             else{
-                    writeFile("Input file error.");
+                    writeFileError("Input file error.");
                     sc.close();
                     a.close();
                     return;
