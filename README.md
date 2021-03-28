@@ -10,7 +10,7 @@ UML Diagram is here:
 https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/uml.png
 ![...](https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/uml.png)
 
-How this project is designed:
+# How this project is designed:
 
 We have main method inside the MySystem file and it passes the command line argument as parameter to call method of SupplyChain.
 SupplyChain will read the input from the input file based on the command line arg you provide.
