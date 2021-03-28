@@ -233,7 +233,7 @@ public class Inventory {
     		LinkedList<Chair> temp = this.selectAllFromTable(category);
     		LinkedList<Chair> result = new LinkedList<Chair> ();
     		for(int i=0; i<temp.size(); i++) {
-    			if(temp.get(i).getType().matches(type)) {
+    			if(temp.get(i).getType().toUpperCase().matches(type)) {
     				result.add(temp.get(i));
     			}
     		}
@@ -244,7 +244,7 @@ public class Inventory {
     		LinkedList<Desk> temp = this.selectAllFromTable(category);
     		LinkedList<Desk> result = new LinkedList<Desk> ();
     		for(int i=0; i<temp.size(); i++) {
-    			if(temp.get(i).getType().matches(type)) {
+    			if(temp.get(i).getType().toUpperCase().matches(type)) {
     				result.add(temp.get(i));
     			}
     		}
@@ -255,7 +255,7 @@ public class Inventory {
     		LinkedList<Lamp> temp = this.selectAllFromTable(category);
     		LinkedList<Lamp> result = new LinkedList<Lamp> ();
     		for(int i=0; i<temp.size(); i++) {
-    			if(temp.get(i).getType().matches(type)) {
+    			if(temp.get(i).getType().toUpperCase().matches(type)) {
     				result.add(temp.get(i));
     			}
     		}
@@ -266,7 +266,7 @@ public class Inventory {
     		LinkedList<Filing> temp = this.selectAllFromTable(category);
     		LinkedList<Filing> result = new LinkedList<Filing> ();
     		for(int i=0; i<temp.size(); i++) {
-    			if(temp.get(i).getType().matches(type)) {
+    			if(temp.get(i).getType().toUpperCase().matches(type)) {
     				result.add(temp.get(i));
     			}
     		}

@@ -32,7 +32,7 @@ public class SupplyChain{
         while(requiredTimes!=0) {
         
     	if(inputArray[1].equals("CHAIR")) {
-        LinkedList<Chair>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
+        LinkedList<Furniture>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
         if(searchedResults==null) {
         	return -1;
         }
@@ -53,7 +53,7 @@ public class SupplyChain{
     	}
        
     	if(inputArray[1].equals("DESK")) {
-            LinkedList<Desk>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
+            LinkedList<Furniture>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
             if(searchedResults==null) {
             	return -1;
             }
@@ -72,7 +72,7 @@ public class SupplyChain{
             
         	}
     	if(inputArray[1].equals("LAMP")) {
-            LinkedList<Lamp>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
+            LinkedList<Furniture>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
             if(searchedResults==null) {
             	return -1;
             }
@@ -91,7 +91,7 @@ public class SupplyChain{
             
         	}
     	if(inputArray[1].equals("FILING")) {
-            LinkedList<Filing>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
+            LinkedList<Furniture>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
             if(searchedResults==null) {
             	return -1;
             }
@@ -115,6 +115,7 @@ public class SupplyChain{
         }
         
         writeFile(outputResults);
+        return 1;
         
     }
     public void writeFileException( LinkedList<String>suggestedManufacturer) {
@@ -125,7 +126,9 @@ public class SupplyChain{
             	output+=suggestedManufacturer.get(i)+", ";
             }
             output=output.substring(0,output.length()-2);
-            
+            output+=".";
+            myWriter.write(output);
+            myWriter.close();
     	}catch(IOException e) {
             System.out.println("An error occurred.");
        }
@@ -168,12 +171,15 @@ public class SupplyChain{
     	try{
             FileWriter myWriter=new FileWriter(outputFileName,true);
             myWriter.write(error);
+            myWriter.close();
     	}catch(IOException e) {
             System.out.println("An error occurred.");
        }
     }
-    public void readInput(String inputFileName) {
+    public void readInput(String inputFileName1,String outputFileName1) {
         File f = null;
+        inputFileName=inputFileName1;
+        outputFileName=outputFileName1;
         try {
             f = new File(inputFileName);
             if (!f.exists()) {
