@@ -1,69 +1,48 @@
 package edu.ucalgary.ensf409;
 
-class Filing {
+class Filing extends Furniture{
 
-    private String ID;
-    private String Type;
-    private String Rails;
-    private String Drawers;
-    private String Cabinet;
-    private int Price;
-    private String ManuID;
+    private boolean Rails;
+    private boolean Drawers;
+    private boolean Cabinet;
 
-    public String getID() {
-        return ID;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public String getRails() {
+    public boolean getRails() {
         return Rails;
     }
 
-    public String getDrawers() {
+    public boolean getDrawers() {
         return Drawers;
     }
 
-    public String getCabinet() {
+    public boolean getCabinet() {
         return Cabinet;
     }
 
-    public int getPrice(){
-    	return Price;
-    }
-
-    public String getManuID() {
-        return ManuID;
-    }
-
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-	public void setType(String type) {
-		Type = type;
-	}
-
 	public void setRails(String rails) {
-		Rails = rails;
+		if(rails.equals("Y")) {
+			this.Rails = true;
+		}
+		else {
+			this.Rails = false;
+		}
 	}
 
 	public void setDrawers(String drawers) {
-		Drawers = drawers;
+		if(drawers.equals("Y")) {
+			this.Drawers = true;
+		}
+		else {
+			this.Drawers = false;
+		}
 	}
 
 	public void setCabinet(String cabinet) {
-		Cabinet = cabinet;
-	}
-
-	public void setPrice(int price) {
-		Price = price;
-	}
-
-	public void setManuID(String manuID) {
-		ManuID = manuID;
+		if(cabinet.equals("Y")) {
+			this.Cabinet = true;
+		}
+		else {
+			this.Cabinet = false;
+		}
 	}
 
 }

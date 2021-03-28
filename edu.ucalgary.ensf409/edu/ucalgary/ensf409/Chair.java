@@ -1,77 +1,62 @@
 package edu.ucalgary.ensf409;
 
-class Chair {
-    private String ID;
-    private String Type;
-    private String Legs;
-    private String Arms;
-    private String Seat;
-    private String Cushion;
-    private int Price;
-    private String ManuID;
+class Chair extends Furniture {
+    private boolean Legs;
+    private boolean Arms;
+    private boolean Seat;
+    private boolean Cushion;
 
-    public String getManuID() {
-        return ManuID;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public String getLegs() {
+    public boolean getLegs() {
         return Legs;
     }
 
-    public String getArms() {
+    public boolean getArms() {
         return Arms;
     }
 
-    public String getSeat() {
+    public boolean getSeat() {
         return Seat;
     }
 
-    public String getCushion() {
+    public boolean getCushion() {
         return Cushion;
     }
 
-    public int getPrice(){
-    	return Price;
-    }
-
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-	public void setType(String type) {
-		Type = type;
-	}
-
 	public void setLegs(String legs) {
-		Legs = legs;
+		if(legs.equals("Y")) {
+			this.Legs = true;
+		}
+		else {
+			this.Legs = false;
+		}
 	}
 
 	public void setArms(String arms) {
-		Arms = arms;
+		if(arms.equals("Y")) {
+			this.Arms = true;
+		}
+		else {
+			this.Arms = false;
+		}
 	}
 
 	public void setSeat(String seat) {
-		Seat = seat;
+		if(seat.equals("Y")) {
+			this.Seat = true;
+		}
+		else {
+			this.Seat = false;
+		}
 	}
 
 	public void setCushion(String cushion) {
-		Cushion = cushion;
+		if(cushion.equals("Y")) {
+			this.Cushion = true;
+		}
+		else {
+			this.Cushion = false;
+		}
 	}
 
-	public void setPrice(int price) {
-		Price = price;
-	}
-
-	public void setManuID(String manuID) {
-		ManuID = manuID;
-	}
 
 }

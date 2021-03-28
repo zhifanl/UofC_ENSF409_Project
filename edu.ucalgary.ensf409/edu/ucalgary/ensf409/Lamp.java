@@ -1,59 +1,34 @@
 package edu.ucalgary.ensf409;
 
-class Lamp {
-    private String ID;
-    private String Type;
-    private String Base;
-    private String Bulb;
-    private int Price;
-    private String ManuID;
+class Lamp extends Furniture{
 
-    public String getID() {
-        return ID;
-    }
+    private boolean Base;
+    private boolean Bulb;
 
-    public String getType() {
-        return Type;
-    }
-
-    public String getBase() {
+    public boolean getBase() {
         return Base;
     }
 
-    public String getBulb() {
+    public boolean getBulb() {
         return Bulb;
     }
 
-    public int getPrice(){
-        return Price;
-    }
-
-    public String getManuID() {
-        return ManuID;
-    }
-
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-	public void setType(String type) {
-		Type = type;
-	}
-
 	public void setBase(String base) {
-		Base = base;
+		if(base.equals("Y")) {
+			this.Base = true;
+		}
+		else {
+			this.Base = false;
+		}
 	}
 
 	public void setBulb(String bulb) {
-		Bulb = bulb;
-	}
-
-	public void setPrice(int price) {
-		Price = price;
-	}
-
-	public void setManuID(String manuID) {
-		ManuID = manuID;
+		if(bulb.equals("Y")) {
+			this.Bulb = true;
+		}
+		else {
+			this.Bulb = false;
+		}
 	}
 
 }

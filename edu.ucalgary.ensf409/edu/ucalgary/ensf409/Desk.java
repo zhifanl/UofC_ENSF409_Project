@@ -1,31 +1,23 @@
 package edu.ucalgary.ensf409;
 
-class Desk {
-    private String ID;
-    private String Type;
-    private String Legs;
-    private String Top;
-    private String Drawer;
-    private int Price;
+class Desk extends Furniture{
+
+    private boolean Legs;
+    private boolean Top;
+    private boolean Drawer;
+
+	private int Price;
     private String ManuID;
 
-    public String getID() {
-        return ID;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public String getLegs() {
+    public boolean getLegs() {
         return Legs;
     }
 
-    public String getTop() {
+    public boolean getTop() {
         return Top;
     }
 
-    public String getDrawer() {
+    public boolean getDrawer() {
         return Drawer;
     }
 
@@ -37,24 +29,31 @@ class Desk {
         return ManuID;
     }
 
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-	public void setType(String type) {
-		Type = type;
-	}
-
 	public void setLegs(String legs) {
-		Legs = legs;
+		if(legs.equals("Y")) {
+			this.Legs = true;
+		}
+		else {
+			this.Legs = false;
+		}
 	}
 
 	public void setTop(String top) {
-		Top = top;
+		if(top.equals("Y")) {
+			this.Top = true;
+		}
+		else {
+			this.Top = false;
+		}
 	}
 
 	public void setDrawer(String drawer) {
-		Drawer = drawer;
+		if(drawer.equals("Y")) {
+			this.Drawer = true;
+		}
+		else {
+			this.Drawer = false;
+		}
 	}
 
 	public void setPrice(int price) {
