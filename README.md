@@ -8,9 +8,10 @@ Our Project is in main branch.
 
 All the java file is in edu/ucalgary/ensf409
 
-# Run the program by cloning the code,
-# javac edu/ucalgary/ensf409/MySystem
-# java edu/ucalgary/ensf409/MySystem inputFileName outputFileName
+# To Run the program 
+1. clone the code
+2. javac edu/ucalgary/ensf409/MySystem.java 
+3. java edu/ucalgary/ensf409/MySystem inputFileName outputFileName
 
 where inputFileName should already exist in the working directory, and outputFileName can be named the way you want, and it will be produced in the working directory.
 
