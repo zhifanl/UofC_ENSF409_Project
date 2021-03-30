@@ -1,6 +1,7 @@
 package edu.ucalgary.ensf409;
 
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class FurnitureList {
@@ -164,7 +165,7 @@ public class FurnitureList {
 			this.furnitureList = new LinkedList<Furniture> (deskList);
 		}
 		
-		else if(furnitureList.get(0) instanceof Desk) {
+		else if(furnitureList.get(0) instanceof Filing) {
 			LinkedList <Filing> filingList = (LinkedList<Filing>) furnitureList.clone();
 			for(int i=0; i<filingList.size(); i++) {
 				String id = filingList.get(i).getID();
@@ -193,34 +194,7 @@ public class FurnitureList {
 			this.furnitureList = new LinkedList<Furniture> (filingList);
 		}
 	
-	else if(furnitureList.get(0) instanceof Desk) {
-		LinkedList <Desk> deskList = (LinkedList<Desk>) furnitureList.clone();
-		for(int i=0; i<deskList.size(); i++) {
-			String id = deskList.get(i).getID();
-			if(deskList.get(i).getDrawer() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
-					|| id.equals(a.getID3()) || id.equals(a.getID4()))){
-				deskList.get(i).setDrawer("N");
-				break;
-			}
-		}
-		for(int i=0; i<deskList.size(); i++) {
-			String id = deskList.get(i).getID();
-			if(deskList.get(i).getLegs() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
-					|| id.equals(a.getID3()) || id.equals(a.getID4()))){
-				deskList.get(i).setLegs("N");
-				break;
-			}
-		}
-		for(int i=0; i<deskList.size(); i++) {
-			String id = deskList.get(i).getID();
-			if(deskList.get(i).getTop() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
-					|| id.equals(a.getID3()) || id.equals(a.getID4()))){
-				deskList.get(i).setTop("N");
-				break;
-			}
-		}
-		this.furnitureList = new LinkedList<Furniture> (deskList);
-	}
+	
 	
 	else{
 		LinkedList <Lamp> lampList = (LinkedList<Lamp>) furnitureList.clone();
