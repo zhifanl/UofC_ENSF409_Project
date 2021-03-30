@@ -1,7 +1,6 @@
 package edu.ucalgary.ensf409;
 
 
-import java.util.HashSet;
 import java.util.LinkedList;
 
 public class FurnitureList {
@@ -46,47 +45,53 @@ public class FurnitureList {
 //		return totalPrice;
 //	}
 	
+//	public int findTotalPrice () {
+//		int totalPrice=0;
+//		LinkedList<String> allID = this.findAllID();
+//		HashSet<Combination>records=new HashSet<>();
+//		for(int i=0;i<combinationList.size();i++) {
+//			for(int j=0;j<allID.size();j++) {
+//			if(combinationList.get(i).getID1().equals(allID.get(i))) {
+//				if(!records.contains(combinationList.get(i))) {
+//					records.add(combinationList.get(i));
+//					totalPrice+=combinationList.get(i).getPrice();
+//				}
+//			}
+//					
+//				if(combinationList.get(i).getID2().equals(allID.get(i))) {
+//					if(!records.contains(combinationList.get(i))) {
+//						records.add(combinationList.get(i));
+//						totalPrice+=combinationList.get(i).getPrice();
+//					}
+//				}
+//					
+//					
+//				if(combinationList.get(i).getID3().equals(allID.get(i))) {
+//					if(!records.contains(combinationList.get(i))) {
+//						records.add(combinationList.get(i));
+//						totalPrice+=combinationList.get(i).getPrice();
+//					}
+//				}
+//					
+//					
+//				if(combinationList.get(i).getID4().equals(allID.get(i))) {
+//					if(!records.contains(combinationList.get(i))) {
+//						records.add(combinationList.get(i));
+//						totalPrice+=combinationList.get(i).getPrice();
+//					}
+//				}
+//				
+//			}
+//		}
+//		return totalPrice;
+//	}
 	public int findTotalPrice () {
-		int totalPrice=0;
-		LinkedList<String> allID = this.findAllID();
-		HashSet<Combination>records=new HashSet<>();
+		int price=0;
 		for(int i=0;i<combinationList.size();i++) {
-			for(int j=0;j<allID.size();j++) {
-			if(combinationList.get(i).getID1().equals(allID.get(i))) {
-				if(!records.contains(combinationList.get(i))) {
-					records.add(combinationList.get(i));
-					totalPrice+=combinationList.get(i).getPrice();
-				}
-			}
-					
-				if(combinationList.get(i).getID2().equals(allID.get(i))) {
-					if(!records.contains(combinationList.get(i))) {
-						records.add(combinationList.get(i));
-						totalPrice+=combinationList.get(i).getPrice();
-					}
-				}
-					
-					
-				if(combinationList.get(i).getID3().equals(allID.get(i))) {
-					if(!records.contains(combinationList.get(i))) {
-						records.add(combinationList.get(i));
-						totalPrice+=combinationList.get(i).getPrice();
-					}
-				}
-					
-					
-				if(combinationList.get(i).getID4().equals(allID.get(i))) {
-					if(!records.contains(combinationList.get(i))) {
-						records.add(combinationList.get(i));
-						totalPrice+=combinationList.get(i).getPrice();
-					}
-				}
-				
-			}
+			price+=combinationList.get(i).getPrice();
 		}
-		return totalPrice;
+		return price;
 	}
-
 	
 	
 	
