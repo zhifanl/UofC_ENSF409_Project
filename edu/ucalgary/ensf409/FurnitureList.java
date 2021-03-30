@@ -134,7 +134,7 @@ public class FurnitureList {
 				}
 				this.furnitureList = new LinkedList<Furniture> (chairList);
 			}
-		}
+		
 		
 		else if(furnitureList.get(0) instanceof Desk) {
 			LinkedList <Desk> deskList = (LinkedList<Desk>) furnitureList.clone();
@@ -216,7 +216,8 @@ public class FurnitureList {
 		}
 		this.furnitureList = new LinkedList<Furniture> (lampList);
 	}
-}
+	}
+	}
 
 	public LinkedList<Furniture> getFurnitureList() {
 		return furnitureList;
