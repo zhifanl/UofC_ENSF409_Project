@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+
 import java.util.LinkedList;
 
 public class Algorithm {
@@ -233,8 +234,8 @@ public class Algorithm {
 		
 		private boolean isMatch(Filing filing1, Filing filing2) {
 			if((filing1.getCabinet() || filing2.getCabinet())
-				&& (filing1.getDrawers() || filing1.getDrawers())
-				&& (filing1.getRails() || filing1.getRails())) {
+				&& (filing1.getDrawers() || filing2.getDrawers())
+				&& (filing1.getRails() || filing2.getRails())) {
 				return true;
 			}
 			else {
@@ -244,8 +245,8 @@ public class Algorithm {
 		
 		private boolean isMatch(Filing filing1, Filing filing2, Filing filing3) {
 			if((filing1.getCabinet() || filing2.getCabinet() || filing3.getCabinet())
-					&& (filing1.getDrawers() || filing1.getDrawers() || filing3.getDrawers())
-					&& (filing1.getRails() || filing1.getRails()) || filing3.getRails()) {
+					&& (filing1.getDrawers() || filing2.getDrawers() || filing3.getDrawers())
+					&& (filing1.getRails() || filing2.getRails()) || filing3.getRails()) {
 					return true;
 			}
 			else {
@@ -296,8 +297,8 @@ public class Algorithm {
 				}
 				
 				private boolean isMatch(Lamp lamp1, Lamp lamp2) {
-					if((lamp1.getBase() || lamp1.getBase())
-						&& (lamp1.getBulb() || lamp1.getBulb())) {
+					if((lamp1.getBase() || lamp2.getBase())
+						&& (lamp1.getBulb() || lamp2.getBulb())) {
 						return true;
 					}
 					else {

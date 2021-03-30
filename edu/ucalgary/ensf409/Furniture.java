@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+
 public abstract class Furniture {
 	private String ID;
     private String Type;

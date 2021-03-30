@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+
 class Lamp extends Furniture{
 
     private boolean Base;

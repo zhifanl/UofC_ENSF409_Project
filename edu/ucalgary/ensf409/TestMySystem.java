@@ -1,4 +1,5 @@
 package edu.ucalgary.ensf409;
+
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedInputStream;

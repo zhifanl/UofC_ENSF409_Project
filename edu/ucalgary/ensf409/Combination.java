@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+
 public class Combination {
 	String ID1 = null;
 	String ID2 = null;

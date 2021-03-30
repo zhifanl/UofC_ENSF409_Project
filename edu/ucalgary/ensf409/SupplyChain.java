@@ -19,7 +19,11 @@ public class SupplyChain{
         input=input.toUpperCase();
         String inputArray[] = input.split("\\s+");
 
-        
+        if(inputArray[0].equals("SWING")&&inputArray[1].equals("ARM")&&inputArray[2].equals("LAMP")) {
+        	inputArray[0]="SWING ARM";
+        	inputArray[1]="LAMP";
+        	inputArray[2]=inputArray[3];
+        }
         
         int requiredTimes=Integer.parseInt(inputArray[2]);
         Combination result= null;
@@ -45,27 +49,12 @@ public class SupplyChain{
         Algorithm obj=new Algorithm();
         
         result = obj.findCheapestSet(searchedResults.getFurnitureList());
-        /*
-        if(result==null&&searchedResults.getFurnitureList()!=null) {
-    	   for(int i=0;i<searchedManu.size();i++ ) {
-    		   if(searchedManu.get(i).getManuID().equals(searchedResults.getFurnitureList().get(0).getManuID())) {
-    			   suggestedManufacturer.add(searchedManu.get(i).getName());
-    			   
-    		   }
-    	   }
-    	   
-    	   writeFileException(suggestedManufacturer);
-    	   return -1;
-    	}
-    	*/
+       
         if(result!=null) {
         	searchedResults.addToCombinationList(result);
         	searchedResults.updateQuantity(result);
         }
-        //myJDBC.deleteFromTable("CHAIR", result.getID1());
-        //if(result.getID2()!=null) {myJDBC.deleteFromTable("CHAIR", result.getID2());}
-        //if(result.getID3()!=null) {myJDBC.deleteFromTable("CHAIR", result.getID3());}
-        //if(result.getID4()!=null) {myJDBC.deleteFromTable("CHAIR", result.getID4());}
+       
     	}
        
     	if(inputArray[1].equals("DESK")) {
@@ -77,27 +66,13 @@ public class SupplyChain{
             Algorithm obj=new Algorithm();
            result=obj.findCheapestSet(searchedResults.getFurnitureList());
            
-           /*
-           if(result==null&&searchedResults.getFurnitureList()!=null) {
-        	   for(int i=0;i<searchedManu.size();i++ ) {
-        		   if(searchedManu.get(i).getManuID().equals(searchedResults.getFurnitureList().get(0).getManuID())) {
-        			   suggestedManufacturer.add(searchedManu.get(i).getName());
-        		   }
-        	   }
-        	   writeFileException(suggestedManufacturer);
-        	   return -1;
-        	}
-        	*/
+          
            
            if(result!=null) {
         	   searchedResults.addToCombinationList(result);
         	   searchedResults.updateQuantity(result);
            }
-           //myJDBC.deleteFromTable("DESK", result.getID1());
-           //if(result.getID2()!=null) {myJDBC.deleteFromTable("DESK", result.getID2());}
-           //if(result.getID3()!=null) {myJDBC.deleteFromTable("DESK", result.getID3());}
-           //if(result.getID4()!=null) {myJDBC.deleteFromTable("DESK", result.getID4());}
-            
+         
         	}
     	if(inputArray[1].equals("LAMP")) {
             //LinkedList<Furniture>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
@@ -107,26 +82,13 @@ public class SupplyChain{
             }
             Algorithm obj=new Algorithm();
            result=obj.findCheapestSet(searchedResults.getFurnitureList());
-           /*
-           if(result==null&&searchedResults!=null) {
-        	   for(int i=0;i<searchedManu.size();i++ ) {
-        		   if(searchedManu.get(i).getManuID().equals(searchedResults.get(0).getManuID())) {
-        			   suggestedManufacturer.add(searchedManu.get(i).getName());
-        		   }
-        	   }
-        	   writeFileException(suggestedManufacturer);
-        	   return -1;
-        	}
-        	*/
+          
+        	
            if(result!=null) {
         	   searchedResults.addToCombinationList(result);
         	   searchedResults.updateQuantity(result);
            }
-           //myJDBC.deleteFromTable("LAMP", result.getID1());
-           //if(result.getID2()!=null) {myJDBC.deleteFromTable("LAMP", result.getID2());}
-           //if(result.getID3()!=null) {myJDBC.deleteFromTable("LAMP", result.getID3());}
-           //if(result.getID4()!=null) {myJDBC.deleteFromTable("LAMP", result.getID4());}
-            
+           
         	}
     	if(inputArray[1].equals("FILING")) {
             //LinkedList<Furniture>searchedResults=myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
@@ -136,28 +98,12 @@ public class SupplyChain{
             }
             Algorithm obj=new Algorithm();
            result=obj.findCheapestSet(searchedResults.getFurnitureList());
-           /*
-           if(result==null&&searchedResults!=null) {
-        	   for(int i=0;i<searchedManu.size();i++ ) {
-        		   if(searchedManu.get(i).getManuID().equals(searchedResults.get(0).getManuID())) {
-        			   suggestedManufacturer.add(searchedManu.get(i).getName());
-        		   		}
-        	   		}
-        	   writeFileException(suggestedManufacturer);
-        	   return -1;
-            
-        		}
-        		*/
+        
            
            if(result!=null) {
         	   searchedResults.addToCombinationList(result);
         	   searchedResults.updateQuantity(result);
            }
-           //outputResults.add(result);
-           //myJDBC.deleteFromTable("FILING", result.getID1());
-           //if(result.getID2()!=null) {myJDBC.deleteFromTable("FILING", result.getID2());}
-           //if(result.getID3()!=null) {myJDBC.deleteFromTable("FILING", result.getID3());}
-           //if(result.getID4()!=null) {myJDBC.deleteFromTable("FILING", result.getID4());}
            
         	}
     	
@@ -167,9 +113,13 @@ public class SupplyChain{
         
         if(searchedResults.getCombinationList().size()!= Integer.parseInt(inputArray[2])) {
         	for(int i=0;i<searchedManu.size();i++ ) {
-     		   if(searchedManu.get(i).getManuID().equals(searchedResults.getFurnitureList().get(0).getManuID())) {
+        		for(int j=0;j<searchedResults.getFurnitureList().size();j++) {
+     		   if(searchedManu.get(i).getManuID().equals(searchedResults.getFurnitureList().get(j).getManuID())) {
+     			   if(!suggestedManufacturer.contains(searchedManu.get(i).getName())) {
      			   suggestedManufacturer.add(searchedManu.get(i).getName());
      		   		}
+     		   		}
+        		}
      	   		}
      	   writeFileException(suggestedManufacturer);
      	   return -1;

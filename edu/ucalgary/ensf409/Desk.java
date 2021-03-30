@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+
 class Desk extends Furniture{
 
     private boolean Legs;

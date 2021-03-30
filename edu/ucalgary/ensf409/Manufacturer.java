@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+
 class Manufacturer {
 
     private String ManuID;

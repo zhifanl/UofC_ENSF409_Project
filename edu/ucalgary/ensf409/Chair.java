@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+
 class Chair extends Furniture {
     private boolean Legs;
     private boolean Arms;

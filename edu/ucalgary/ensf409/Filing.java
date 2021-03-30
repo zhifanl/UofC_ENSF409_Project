@@ -1,5 +1,6 @@
 package edu.ucalgary.ensf409;
 
+
 class Filing extends Furniture{
 
     private boolean Rails;

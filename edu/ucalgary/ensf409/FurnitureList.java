@@ -1,7 +1,6 @@
 package edu.ucalgary.ensf409;
 
 
-import java.util.HashSet;
 import java.util.LinkedList;
 
 public class FurnitureList {
@@ -32,60 +31,7 @@ public class FurnitureList {
 		
 	}
 	
-//	public int findTotalPrice () {
-//		int totalPrice = 0;
-//		LinkedList<String> allID = this.findAllID();
-//		for (int i=0; i<allID.size(); i++) {
-//			for(int j=0; j<furnitureList.size(); j++) {
-//				if(furnitureList.get(j).getID().equals(allID.get(i))) {
-//					totalPrice += furnitureList.get(j).getPrice();
-//				}
-//			}
-//		}
-//		
-//		return totalPrice;
-//	}
-	
-//	public int findTotalPrice () {
-//		int totalPrice=0;
-//		LinkedList<String> allID = this.findAllID();
-//		HashSet<Combination>records=new HashSet<>();
-//		for(int i=0;i<combinationList.size();i++) {
-//			for(int j=0;j<allID.size();j++) {
-//			if(combinationList.get(i).getID1().equals(allID.get(i))) {
-//				if(!records.contains(combinationList.get(i))) {
-//					records.add(combinationList.get(i));
-//					totalPrice+=combinationList.get(i).getPrice();
-//				}
-//			}
-//					
-//				if(combinationList.get(i).getID2().equals(allID.get(i))) {
-//					if(!records.contains(combinationList.get(i))) {
-//						records.add(combinationList.get(i));
-//						totalPrice+=combinationList.get(i).getPrice();
-//					}
-//				}
-//					
-//					
-//				if(combinationList.get(i).getID3().equals(allID.get(i))) {
-//					if(!records.contains(combinationList.get(i))) {
-//						records.add(combinationList.get(i));
-//						totalPrice+=combinationList.get(i).getPrice();
-//					}
-//				}
-//					
-//					
-//				if(combinationList.get(i).getID4().equals(allID.get(i))) {
-//					if(!records.contains(combinationList.get(i))) {
-//						records.add(combinationList.get(i));
-//						totalPrice+=combinationList.get(i).getPrice();
-//					}
-//				}
-//				
-//			}
-//		}
-//		return totalPrice;
-//	}
+
 	public int findTotalPrice () {
 		int price=0;
 		for(int i=0;i<combinationList.size();i++) {
@@ -99,37 +45,39 @@ public class FurnitureList {
 	public void updateQuantity (Combination a){
 		if(furnitureList!=null) {
 			if(furnitureList.get(0) instanceof Chair) {
-				LinkedList <Chair> chairList = (LinkedList<Chair>) furnitureList.clone();
+				LinkedList <Chair> chairList=new LinkedList<>();;
+//				chairList = (LinkedList<Chair>) furnitureList.clone();
+//				
+				
+				for(int i=0;i<furnitureList.size();i++) {
+					chairList.add((Chair)furnitureList.get(i));
+				}
 				for(int i=0; i<chairList.size(); i++) {
 					String id = chairList.get(i).getID();
 					if(chairList.get(i).getArms() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 							|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 						chairList.get(i).setArms("N");
-						break;
 					}
 				}
 				for(int i=0; i<chairList.size(); i++) {
 					String id = chairList.get(i).getID();
 					if(chairList.get(i).getCushion() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 							|| id.equals(a.getID3()) || id.equals(a.getID4()))){
-						chairList.get(i).setArms("N");
-						break;
+						chairList.get(i).setCushion("N");
 					}
 				}
 				for(int i=0; i<chairList.size(); i++) {
 					String id = chairList.get(i).getID();
 					if(chairList.get(i).getSeat() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 							|| id.equals(a.getID3()) || id.equals(a.getID4()))){
-						chairList.get(i).setArms("N");
-						break;
+						chairList.get(i).setSeat("N");
 					}
 				}
 				for(int i=0; i<chairList.size(); i++) {
 					String id = chairList.get(i).getID();
 					if(chairList.get(i).getLegs() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 							|| id.equals(a.getID3()) || id.equals(a.getID4()))){
-						chairList.get(i).setArms("N");
-						break;
+						chairList.get(i).setLegs("N");
 					}
 				}
 				this.furnitureList = new LinkedList<Furniture> (chairList);
@@ -137,13 +85,13 @@ public class FurnitureList {
 		
 		
 		else if(furnitureList.get(0) instanceof Desk) {
-			LinkedList <Desk> deskList = (LinkedList<Desk>) furnitureList.clone();
+			LinkedList <Desk> deskList=new LinkedList<>();
+			deskList = (LinkedList<Desk>) furnitureList.clone();
 			for(int i=0; i<deskList.size(); i++) {
 				String id = deskList.get(i).getID();
 				if(deskList.get(i).getDrawer() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					deskList.get(i).setDrawer("N");
-					break;
 				}
 			}
 			for(int i=0; i<deskList.size(); i++) {
@@ -151,7 +99,6 @@ public class FurnitureList {
 				if(deskList.get(i).getLegs() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					deskList.get(i).setLegs("N");
-					break;
 				}
 			}
 			for(int i=0; i<deskList.size(); i++) {
@@ -159,20 +106,20 @@ public class FurnitureList {
 				if(deskList.get(i).getTop() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					deskList.get(i).setTop("N");
-					break;
 				}
 			}
 			this.furnitureList = new LinkedList<Furniture> (deskList);
 		}
 		
 		else if(furnitureList.get(0) instanceof Filing) {
-			LinkedList <Filing> filingList = (LinkedList<Filing>) furnitureList.clone();
+			LinkedList <Filing> filingList=new LinkedList<>();
+			filingList = (LinkedList<Filing>) furnitureList.clone();
 			for(int i=0; i<filingList.size(); i++) {
 				String id = filingList.get(i).getID();
 				if(filingList.get(i).getCabinet() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					filingList.get(i).setCabinet("N");
-					break;
+					
 				}
 			}
 			for(int i=0; i<filingList.size(); i++) {
@@ -180,7 +127,6 @@ public class FurnitureList {
 				if(filingList.get(i).getDrawers() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					filingList.get(i).setDrawers("N");
-					break;
 				}
 			}
 			for(int i=0; i<filingList.size(); i++) {
@@ -188,7 +134,6 @@ public class FurnitureList {
 				if(filingList.get(i).getRails() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					filingList.get(i).setRails("N");
-					break;
 				}
 			}
 			this.furnitureList = new LinkedList<Furniture> (filingList);
@@ -197,13 +142,13 @@ public class FurnitureList {
 	
 	
 	else{
-		LinkedList <Lamp> lampList = (LinkedList<Lamp>) furnitureList.clone();
+		LinkedList <Lamp> lampList=new LinkedList<>();
+		lampList = (LinkedList<Lamp>) furnitureList.clone();
 		for(int i=0; i<lampList.size(); i++) {
 			String id = lampList.get(i).getID();
 			if(lampList.get(i).getBase() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 					|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 				lampList.get(i).setBase("N");
-				break;
 			}
 		}
 		for(int i=0; i<lampList.size(); i++) {
@@ -211,13 +156,12 @@ public class FurnitureList {
 			if(lampList.get(i).getBulb() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 					|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 				lampList.get(i).setBulb("N");
-				break;
 			}
 		}
 		this.furnitureList = new LinkedList<Furniture> (lampList);
 	}
 	}
-	}
+}
 
 	public LinkedList<Furniture> getFurnitureList() {
 		return furnitureList;
