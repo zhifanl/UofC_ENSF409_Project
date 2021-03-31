@@ -1,6 +1,7 @@
 package edu.ucalgary.ensf409;
 
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class FurnitureList {
@@ -32,16 +33,20 @@ public class FurnitureList {
 	}
 	
 
+
 	public int findTotalPrice () {
-		int price=0;
-		for(int i=0;i<combinationList.size();i++) {
-			price+=combinationList.get(i).getPrice();
+		int totalPrice = 0;
+		LinkedList<String> allID = this.findAllID();
+		for (int i=0; i<allID.size(); i++) {
+			for(int j=0; j<furnitureList.size(); j++) {
+				if(furnitureList.get(j).getID().equals(allID.get(i))) {
+					totalPrice += furnitureList.get(j).getPrice();
+				}
+			}
 		}
-		return price;
+
+		return totalPrice;
 	}
-	
-	
-	
 	public void updateQuantity (Combination a){
 		if(furnitureList!=null) {
 			if(furnitureList.get(0) instanceof Chair) {
@@ -57,6 +62,8 @@ public class FurnitureList {
 					if(chairList.get(i).getArms() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 							|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 						chairList.get(i).setArms("N");
+						break;
+
 					}
 				}
 				for(int i=0; i<chairList.size(); i++) {
@@ -64,6 +71,8 @@ public class FurnitureList {
 					if(chairList.get(i).getCushion() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 							|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 						chairList.get(i).setCushion("N");
+						break;
+
 					}
 				}
 				for(int i=0; i<chairList.size(); i++) {
@@ -71,6 +80,8 @@ public class FurnitureList {
 					if(chairList.get(i).getSeat() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 							|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 						chairList.get(i).setSeat("N");
+						break;
+
 					}
 				}
 				for(int i=0; i<chairList.size(); i++) {
@@ -78,6 +89,8 @@ public class FurnitureList {
 					if(chairList.get(i).getLegs() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 							|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 						chairList.get(i).setLegs("N");
+						break;
+
 					}
 				}
 				this.furnitureList = new LinkedList<Furniture> (chairList);
@@ -92,6 +105,7 @@ public class FurnitureList {
 				if(deskList.get(i).getDrawer() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					deskList.get(i).setDrawer("N");
+					break;
 				}
 			}
 			for(int i=0; i<deskList.size(); i++) {
@@ -99,6 +113,8 @@ public class FurnitureList {
 				if(deskList.get(i).getLegs() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					deskList.get(i).setLegs("N");
+					break;
+
 				}
 			}
 			for(int i=0; i<deskList.size(); i++) {
@@ -106,6 +122,8 @@ public class FurnitureList {
 				if(deskList.get(i).getTop() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					deskList.get(i).setTop("N");
+					break;
+
 				}
 			}
 			this.furnitureList = new LinkedList<Furniture> (deskList);
@@ -119,6 +137,8 @@ public class FurnitureList {
 				if(filingList.get(i).getCabinet() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					filingList.get(i).setCabinet("N");
+					break;
+
 					
 				}
 			}
@@ -127,6 +147,8 @@ public class FurnitureList {
 				if(filingList.get(i).getDrawers() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					filingList.get(i).setDrawers("N");
+					break;
+
 				}
 			}
 			for(int i=0; i<filingList.size(); i++) {
@@ -134,6 +156,8 @@ public class FurnitureList {
 				if(filingList.get(i).getRails() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 						|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 					filingList.get(i).setRails("N");
+					break;
+
 				}
 			}
 			this.furnitureList = new LinkedList<Furniture> (filingList);
@@ -149,6 +173,8 @@ public class FurnitureList {
 			if(lampList.get(i).getBase() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 					|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 				lampList.get(i).setBase("N");
+				break;
+
 			}
 		}
 		for(int i=0; i<lampList.size(); i++) {
@@ -156,6 +182,8 @@ public class FurnitureList {
 			if(lampList.get(i).getBulb() == true && (id.equals(a.getID1()) || id.equals(a.getID2())
 					|| id.equals(a.getID3()) || id.equals(a.getID4()))){
 				lampList.get(i).setBulb("N");
+				break;
+
 			}
 		}
 		this.furnitureList = new LinkedList<Furniture> (lampList);
