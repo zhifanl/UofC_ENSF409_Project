@@ -4,6 +4,7 @@ package edu.ucalgary.ensf409;
 import java.util.LinkedList;
 
 public class Algorithm {
+
 	private Combination loop2Times (LinkedList<Furniture> list) {
 		Combination result = null;
 		for(int i=0; i<list.size(); i++) {

@@ -1,7 +1,6 @@
 package edu.ucalgary.ensf409;
 
 
-import java.util.HashSet;
 import java.util.LinkedList;
 
 public class FurnitureList {

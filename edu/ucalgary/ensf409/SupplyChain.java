@@ -13,6 +13,12 @@ public class SupplyChain{
 	String outputFileName;
 	String inputFileName;
 	String inputString;
+	String username;
+	String password;
+	public SupplyChain(String username,String password) {
+		this.username=username;
+		this.password=password;
+	}
     public int execute(String input){
         input = input.replaceAll("[^0-9a-zA-Z ]", " ");
         //Remove all chars except "0-9","A-Z","a-z";
@@ -28,7 +34,7 @@ public class SupplyChain{
         int requiredTimes=Integer.parseInt(inputArray[2]);
         Combination result= null;
         
-        Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","tianfan","Wenyan3524");
+        Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory",username,password);
     	myJDBC.initializeConnection();
     	
         LinkedList<String>suggestedManufacturer=new LinkedList<>();
