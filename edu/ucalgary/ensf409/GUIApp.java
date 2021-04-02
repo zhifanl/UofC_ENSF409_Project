@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 /**
  * This class creates GUI for user sign-in to the database they want and handles its functionality.
- * @author Zhifan Li 
+ * @author  Taimoor Abrar, Manpreet Singh 
  *
  */
 public class GUIApp extends JFrame{

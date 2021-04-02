@@ -68,7 +68,8 @@ public class Inventory {
     	}
     }
     
-    public LinkedList selectAllFromTable(String tableName) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public LinkedList selectAllFromTable(String tableName) {
     	LinkedList result = null;
     	Statement Stmt = null;
     	
@@ -97,7 +98,6 @@ public class Inventory {
     				try {
     					Stmt.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -105,7 +105,6 @@ public class Inventory {
     				try {
     					results.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -136,7 +135,6 @@ public class Inventory {
     				try {
     					Stmt.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -144,14 +142,11 @@ public class Inventory {
     				try {
     					results.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
-    		
     		}
     	}
-		
     	else if(tableName.matches("FILING")) {
     		try {
         		Stmt = dbConnect.createStatement();
@@ -175,7 +170,6 @@ public class Inventory {
     				try {
     					Stmt.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -183,7 +177,6 @@ public class Inventory {
     				try {
     					results.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -213,7 +206,6 @@ public class Inventory {
     				try {
     					Stmt.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -221,7 +213,6 @@ public class Inventory {
     				try {
     					results.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -250,7 +241,6 @@ public class Inventory {
     				try {
     					Stmt.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -258,7 +248,6 @@ public class Inventory {
     				try {
     					results.close();
     				} catch (SQLException e) {
-    					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
     			}
@@ -269,7 +258,8 @@ public class Inventory {
     	return result;
     }
     
-    public LinkedList selectTypeFromCategory(String category, String type){
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public LinkedList selectTypeFromCategory(String category, String type){
     	if(category.matches("CHAIR")) {
     		LinkedList<Chair> temp = this.selectAllFromTable(category);
     		LinkedList<Chair> result = new LinkedList<Chair> ();
@@ -338,33 +328,10 @@ public class Inventory {
         			try {
         				ps.close();
         			} catch (SQLException e) {
-        				// TODO Auto-generated catch block
         				e.printStackTrace();
         			}
         		}
         	}
     	}
     }
-    
-    /*
-    public static void main(String[] args) {
-    	Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","tianfan","Wenyan3524");
-    	myJDBC.initializeConnection();
-    	
-    	LinkedList <Chair> test1 = myJDBC.selectAllFromTable("CHAIR");
-    	for(int i=0 ; i<test1.size(); i++) {
-    		System.out.println(test1.get(i).getID() + " " + test1.get(i).getType() + " " + test1.get(i).getLegs()
-    						+ " " + test1.get(i).getArms() + " " + test1.get(i).getSeat() + " " + test1.get(i).getCushion()
-    						+ " " + test1.get(i).getPrice() + " " + test1.get(i).getManuID() + "\n");
-    	}
-    	
-    	LinkedList <Chair> test2 = myJDBC.selectTypeFromCategory("CHAIR","Task");
-    	for(int i=0 ; i<test2.size(); i++) {
-    		System.out.println(test2.get(i).getID() + " " + test2.get(i).getType() + " " + test2.get(i).getLegs()
-    						+ " " + test2.get(i).getArms() + " " + test2.get(i).getSeat() + " " + test2.get(i).getCushion()
-    						+ " " + test2.get(i).getPrice() + " " + test2.get(i).getManuID() + "\n");
-    	}
-    }
-    
-    */
 }

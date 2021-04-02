@@ -1,383 +1,159 @@
 package edu.ucalgary.ensf409;
 
 
+import java.util.Hashtable;
 import java.util.LinkedList;
 
 public class Algorithm {
-
-	private Combination loop2Times (LinkedList<Furniture> list) {
-		Combination result = null;
-		for(int i=0; i<list.size(); i++) {
-			Furniture tem1 = list.get(i);
-			if(isMatch(tem1) && result != null) {
-				if(result.getPrice() > tem1.getPrice()) {
-					result = new Combination(tem1.getID(), tem1.getPrice());
-				}
-			}
-			else if (isMatch(tem1) && result == null){
-				result = new Combination(tem1.getID(), tem1.getPrice());
-			}
+	private LinkedList<Furniture>list=new LinkedList<>();
+	private int requiredTimes=0;
+	private String classType;
+	private LinkedList<Furniture[]>results=new LinkedList<>();
+	
+	@SuppressWarnings("unchecked")
+	public String[][] findCheapestSet(LinkedList<Furniture> list,int requiredTimes, String classType) {
+		this.list=(LinkedList<Furniture>)list.clone();
+		this.requiredTimes=requiredTimes;
+		this.classType=classType;
+		DFS(this.list);
+		if(results.size()==0) {
+			return null;
 		}
+		return findBestPrice();
+	}
+	
+	public String[][] findBestPrice() {
+		int bestPrice=Integer.MAX_VALUE;
+		String[][]bestIDsPrice=null;
+		int bestIndex=0;
 		
-		for(int i=0; i<list.size();i++) {
-			for(int j=i+1; j<list.size(); j++) {
-				Furniture tem1 = list.get(i);
-				Furniture tem2 = list.get(j);
-				int totalPrice = tem1.getPrice() + tem2.getPrice();
-				if(isMatch(tem1,tem2) && result != null) {
-					if(result.getPrice() > totalPrice) {
-						result = new Combination(tem1.getID(),tem2.getID(), totalPrice);
-					}
-				}
-				else if (isMatch(tem1,tem2) && result == null){
-					result = new Combination(tem1.getID(),tem2.getID(), totalPrice);
-				}
+		for(int i=0;i<results.size();i++) {
+			int currentPrice=0;
+			for(int j=0;j<results.get(i).length;j++) {
+				currentPrice+=results.get(i)[j].getPrice();
+			}
+			if(currentPrice<bestPrice) {
+				bestPrice=currentPrice;
+				bestIndex=i;
 			}
 		}
-		return result;
+		bestIDsPrice=new String[2][];
+		bestIDsPrice[0]=new String[results.get(bestIndex).length];
+		for(int i=0;i<results.get(bestIndex).length;i++) {
+			bestIDsPrice[0][i]=results.get(bestIndex)[i].getID();
+		}
+		bestIDsPrice[1]=new String[1];
+		bestIDsPrice[1][0]=String.valueOf(bestPrice);
+		return bestIDsPrice;
 	}
-	
-	private Combination loop3Times (LinkedList<Furniture> list) {
-		Combination result = null;
-		for(int i=0; i<list.size(); i++) {
-			Furniture tem1 = list.get(i);
-			if(isMatch(tem1) && result != null) {
-				if(result.getPrice() > tem1.getPrice()) {
-					result = new Combination(tem1.getID(), tem1.getPrice());
-				}
+				
+	public void DFS(LinkedList<Furniture>list) {
+		if(list.size()==0) {
+			return;
+		}else if(isMatch(list,requiredTimes)) {
+			Furniture[]temp=new Furniture[list.size()];
+			for(int i=0;i<list.size();i++) {
+				temp[i]=list.get(i);
 			}
-			else if (isMatch(tem1) && result == null){
-				result = new Combination(tem1.getID(), tem1.getPrice());
+			results.add(temp);
+			for(int i=0;i<list.size();i++) {
+				Furniture e=list.remove(i);
+				DFS(list);
+				list.add(i,e);
 			}
-		}
-		
-		for(int i=0; i<list.size();i++) {
-			for(int j=i+1; j<list.size(); j++) {
-				Furniture tem1 = list.get(i);
-				Furniture tem2 = list.get(j);
-				int totalPrice = tem1.getPrice() + tem2.getPrice();
-				if(isMatch(tem1,tem2) && result != null) {
-					if(result.getPrice() > totalPrice) {
-						result = new Combination(tem1.getID(),tem2.getID(), totalPrice);
-					}
-				}
-				else if (isMatch(tem1,tem2) && result == null){
-					result = new Combination(tem1.getID(),tem2.getID(), totalPrice);
-				}
-			}
-		}
-		
-		for(int i=0; i<list.size();i++) {
-			for(int j=i+1; j<list.size(); j++) {
-				for(int k=j+1; k<list.size(); k++) {
-					Furniture tem1 = list.get(i);
-					Furniture tem2 = list.get(j);
-					Furniture tem3 = list.get(k);
-					int totalPrice = tem1.getPrice() + tem2.getPrice() + tem3.getPrice();
-					if(isMatch(tem1,tem2,tem3) && result != null) {
-						if(result.getPrice() > totalPrice) {
-							result = new Combination(tem1.getID(),tem2.getID(),tem3.getID(), totalPrice);
-						}
-					}
-					else if (isMatch(tem1,tem2,tem3) && result == null){
-						result = new Combination(tem1.getID(),tem2.getID(), tem3.getID(), totalPrice);
-					}
-				}
-			}
-		}
-		return result;
-	}
-	
-	private Combination loop4Times (LinkedList<Furniture> list) {
-		Combination result = null;
-		for(int i=0; i<list.size(); i++) {
-			Furniture tem1 = list.get(i);
-			if(isMatch(tem1) && result != null) {
-				if(result.getPrice() > tem1.getPrice()) {
-					result = new Combination(tem1.getID(), tem1.getPrice());
-				}
-			}
-			else if (isMatch(tem1) && result == null){
-				result = new Combination(tem1.getID(), tem1.getPrice());
-			}
-		}
-		
-		for(int i=0; i<list.size();i++) {
-			for(int j=i+1; j<list.size(); j++) {
-				Furniture tem1 = list.get(i);
-				Furniture tem2 = list.get(j);
-				int totalPrice = tem1.getPrice() + tem2.getPrice();
-				if(isMatch(tem1,tem2) && result != null) {
-					if(result.getPrice() > totalPrice) {
-						result = new Combination(tem1.getID(),tem2.getID(), totalPrice);
-					}
-				}
-				else if (isMatch(tem1,tem2) && result == null){
-					result = new Combination(tem1.getID(),tem2.getID(), totalPrice);
-				}
-			}
-		}
-		
-		for(int i=0; i<list.size();i++) {
-			for(int j=i+1; j<list.size(); j++) {
-				for(int k=j+1; k<list.size(); k++) {
-					Furniture tem1 = list.get(i);
-					Furniture tem2 = list.get(j);
-					Furniture tem3 = list.get(k);
-					int totalPrice = tem1.getPrice() + tem2.getPrice() + tem3.getPrice();
-					if(isMatch(tem1,tem2,tem3) && result != null) {
-						if(result.getPrice() > totalPrice) {
-							result = new Combination(tem1.getID(),tem2.getID(),tem3.getID(), totalPrice);
-						}
-					}
-					else if (isMatch(tem1,tem2,tem3) && result == null){
-						result = new Combination(tem1.getID(),tem2.getID(), tem3.getID(), totalPrice);
-					}
-				}
-			}
-		}
-		
-		for(int i=0; i<list.size();i++) {
-			for(int j=i+1; j<list.size(); j++) {
-				for(int k=j+1; k<list.size(); k++) {
-					for(int m=k+1; m<list.size();m++) {
-						Furniture tem1 = list.get(i);
-						Furniture tem2 = list.get(j);
-						Furniture tem3 = list.get(k);
-						Furniture tem4 = list.get(m);
-						int totalPrice = tem1.getPrice() + tem2.getPrice() + tem3.getPrice() +tem4.getPrice();
-						if(isMatch(tem1,tem2,tem3,tem4) && result != null) {
-							if(result.getPrice() > totalPrice) {
-								result = new Combination(tem1.getID(),tem2.getID(),tem3.getID(), tem4.getID(), totalPrice);
-							}
-						}
-						else if (isMatch(tem1,tem2,tem3,tem4) && result == null){
-							result = new Combination(tem1.getID(),tem2.getID(),tem3.getID(), tem4.getID(), totalPrice);
-						}
-					}
-				}
-			}
-		}
-		return result;
-	}
-	
-	public Combination findCheapestSet(LinkedList<Furniture> list) {
-		Combination result = null;
-		if(list.size()!=0) {
-			if(list.get(0) instanceof Lamp) {
-				result = loop2Times(list);
-			}
-			else if((list.get(0) instanceof Desk || list.get(0) instanceof Filing)) {
-				result = loop3Times(list);
-			}
-			else if (list.get(0) instanceof Chair) {
-				result = loop4Times(list);
-			}
-		}
-		return result;
-	}
-	
-	//method for list of Chair
-	private boolean isMatch (Chair chair1) {
-		if(chair1.getArms() && chair1.getLegs() && chair1.getCushion() && chair1.getSeat()) {
-			return true;
-		}
-		else {
-			return false;
 		}
 	}
-	
-	private boolean isMatch(Chair chair1,Chair chair2) {
-		if((chair1.getArms() || chair2.getArms())
-			&& (chair1.getLegs() || chair2.getLegs())
-			&& (chair1.getSeat() || chair2.getSeat())
-			&& (chair1.getCushion() || chair2.getCushion())) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	private boolean isMatch(Chair chair1,Chair chair2,Chair chair3) {
-		if((chair1.getArms() || chair2.getArms() || chair3.getArms())
-			&& (chair1.getLegs() || chair2.getLegs() || chair3.getLegs())
-			&& (chair1.getSeat() || chair2.getSeat() || chair3.getSeat())
-			&& (chair1.getCushion() || chair2.getCushion() || chair3.getCushion())) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	private boolean isMatch(Chair chair1,Chair chair2,Chair chair3, Chair chair4) {
-		if((chair1.getArms() || chair2.getArms() || chair3.getArms() ||chair4.getArms())
-			&& (chair1.getLegs() || chair2.getLegs() || chair3.getLegs() || chair4.getLegs())
-			&& (chair1.getSeat() || chair2.getSeat() || chair3.getSeat() || chair4.getSeat()) 
-			&& (chair1.getCushion() || chair2.getCushion() || chair3.getCushion() || chair4.getCushion())) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	//method for list of Filing
-		private boolean isMatch (Filing filing1) {
-			if(filing1.getCabinet() && filing1.getDrawers() && filing1.getRails()) {
+	public boolean isMatch(LinkedList<Furniture> list,int time) {
+		Hashtable<Integer,Integer>map=new Hashtable<>();
+		map.put(1, 0);
+		int i=0;
+		map.put(2, 0);
+		int j=0;
+		map.put(3, 0);
+		int k=0;
+		map.put(4, 0);
+		int m=0;
+		if(classType.equals("DESK")) {
+			@SuppressWarnings("unchecked")
+			LinkedList<Desk>temp=(LinkedList<Desk>)list.clone();
+			for(int n=0;n<list.size();n++) {
+				if(temp.get(n).getLegs()) {
+					map.put(1, ++i);
+				}
+				if(temp.get(n).getTop()) {
+					map.put(2, ++j);
+				}
+				if(temp.get(n).getDrawer()) {
+					map.put(3, ++k);
+				}
+			}
+			if(map.get(1)>=requiredTimes&&map.get(2)>=requiredTimes&&map.get(3)>=requiredTimes) {
 				return true;
-			}
-			else {
+			}else {
 				return false;
 			}
 		}
-		
-		private boolean isMatch(Filing filing1, Filing filing2) {
-			if((filing1.getCabinet() || filing2.getCabinet())
-				&& (filing1.getDrawers() || filing2.getDrawers())
-				&& (filing1.getRails() || filing2.getRails())) {
+		if(classType.equals("FILING")) {
+			@SuppressWarnings("unchecked")
+			LinkedList<Filing>temp=(LinkedList<Filing>)list.clone();
+			for(int n=0;n<list.size();n++) {
+				if(temp.get(n).getRails()) {
+					map.put(1, ++i);
+				}
+				if(temp.get(n).getDrawers()) {
+					map.put(2, ++j);
+				}
+				if(temp.get(n).getCabinet()) {
+					map.put(3, ++k);
+				}
+			}
+			if(map.get(1)>=requiredTimes&&map.get(2)>=requiredTimes&&map.get(3)>=requiredTimes) {
 				return true;
-			}
-			else {
+			}else {
 				return false;
 			}
 		}
-		
-		private boolean isMatch(Filing filing1, Filing filing2, Filing filing3) {
-			if((filing1.getCabinet() || filing2.getCabinet() || filing3.getCabinet())
-					&& (filing1.getDrawers() || filing2.getDrawers() || filing3.getDrawers())
-					&& (filing1.getRails() || filing2.getRails()) || filing3.getRails()) {
-					return true;
+		if(classType.equals("LAMP")) {
+			@SuppressWarnings("unchecked")
+			LinkedList<Lamp>temp=(LinkedList<Lamp>)list.clone();
+			for(int n=0;n<list.size();n++) {
+				if(temp.get(n).getBase()) {
+					map.put(1, ++i);
+				}
+				if(temp.get(n).getBulb()) {
+					map.put(2, ++j);
+				}
 			}
-			else {
+			if(map.get(1)>=requiredTimes&&map.get(2)>=requiredTimes) {
+				return true;
+			}else {
 				return false;
 			}
 		}
-		
-		//method for list of Desk	
-				private boolean isMatch (Desk desk1) {
-					if(desk1.getDrawer() && desk1.getLegs() && desk1.getTop()) {
-						return true;
-					}
-					else {
-						return false;
-					}
+		if(classType.equals("CHAIR")) {
+			@SuppressWarnings("unchecked")
+			LinkedList<Chair>temp=(LinkedList<Chair>)list.clone();
+			for(int n=0;n<list.size();n++) {
+				if(temp.get(n).getLegs()) {
+					map.put(1, ++i);
 				}
-				
-				private boolean isMatch(Desk desk1,Desk desk2) {
-					if((desk1.getDrawer() || desk2.getDrawer())
-						&& (desk1.getLegs() || desk2.getLegs())
-						&& (desk1.getTop() || desk2.getTop())) {
-						return true;
-					}
-					else {
-						return false;
-					}
+				if(temp.get(n).getArms()) {
+					map.put(2, ++j);
 				}
-				
-				private boolean isMatch(Desk desk1, Desk desk2, Desk desk3) {
-					if((desk1.getDrawer() || desk2.getDrawer() || desk3.getDrawer())
-							&& (desk1.getLegs() || desk2.getLegs() || desk3.getLegs())
-							&& (desk1.getTop() || desk2.getTop() || desk3.getTop())) { 
-						return true;
-					}
-					else {
-						return false;
-					}
+				if(temp.get(n).getSeat()) {
+					map.put(3, ++k);
 				}
-
-				//method for list of Lamp	
-				private boolean isMatch (Lamp lamp1) {
-					if(lamp1.getBase() && lamp1.getBulb()) {
-						return true;
-					}
-					else {
-						return false;
-					}
-				}
-				
-				private boolean isMatch(Lamp lamp1, Lamp lamp2) {
-					if((lamp1.getBase() || lamp2.getBase())
-						&& (lamp1.getBulb() || lamp2.getBulb())) {
-						return true;
-					}
-					else {
-						return false;
-					}
-				}
-				
-			//method for list of Furniture
-				
-			private boolean isMatch(Furniture f1) {
-				if(f1 instanceof Chair) {
-					Chair temp = (Chair)f1;
-					return isMatch(temp);
-				}
-				else if(f1 instanceof Desk) {
-					Desk temp = (Desk)f1;
-					return isMatch(temp);
-				}
-				else if(f1 instanceof Filing) {
-					Filing temp = (Filing)f1;
-					return isMatch(temp);
-				}
-				else{
-					Lamp temp = (Lamp)f1;
-					return isMatch(temp);
+				if(temp.get(n).getCushion()) {
+					map.put(4, ++m);
 				}
 			}
-			
-			private boolean isMatch(Furniture f1, Furniture f2) {
-				if(f1 instanceof Chair) {
-					Chair temp1 = (Chair)f1;
-					Chair temp2 = (Chair)f2;
-					return isMatch(temp1,temp2);
-				}
-				else if(f1 instanceof Desk) {
-					Desk temp1 = (Desk)f1;
-					Desk temp2 = (Desk)f2;
-					return isMatch(temp1, temp2);
-				}
-				else if(f1 instanceof Filing) {
-					Filing temp1 = (Filing)f1;
-					Filing temp2 = (Filing)f2;
-					return isMatch(temp1,temp2);
-				}
-				else{
-					Lamp temp1 = (Lamp)f1;
-					Lamp temp2 = (Lamp)f2;
-					return isMatch(temp1, temp2);
-				}
+			if(map.get(1)>=requiredTimes&&map.get(2)>=requiredTimes&&map.get(3)>=requiredTimes&&map.get(4)>=requiredTimes) {
+				return true;
+			}else {
+				return false;
 			}
-			
-			private boolean isMatch(Furniture f1, Furniture f2,Furniture f3) {
-				if(f1 instanceof Chair) {
-					Chair temp1 = (Chair)f1;
-					Chair temp2 = (Chair)f2;
-					Chair temp3 = (Chair)f3;
-					return isMatch(temp1,temp2,temp3);
-				}
-				else if(f1 instanceof Desk) {
-					Desk temp1 = (Desk)f1;
-					Desk temp2 = (Desk)f2;
-					Desk temp3 = (Desk)f3;
-					return isMatch(temp1, temp2,temp3);
-				}
-				else{
-					Filing temp1 = (Filing)f1;
-					Filing temp2 = (Filing)f2;
-					Filing temp3 = (Filing)f3;
-					return isMatch(temp1,temp2,temp3);
-				}
-			}
-			
-			private boolean isMatch(Furniture f1, Furniture f2,Furniture f3,Furniture f4) {
-					Chair temp1 = (Chair)f1;
-					Chair temp2 = (Chair)f2;
-					Chair temp3 = (Chair)f3;
-					Chair temp4 = (Chair)f4;
-					return isMatch(temp1,temp2,temp3,temp4);
-
-			}
+		}
+		return false;
+	}
 }
+
