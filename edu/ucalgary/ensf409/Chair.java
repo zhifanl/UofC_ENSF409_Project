@@ -36,7 +36,7 @@ class Chair extends Furniture {
 		return Cushion;
 	}
 	/*
-	*Receievs the Strings legs as an argument and if legs equals Y
+	*Receievs the String legs as an argument and if legs equals Y
 	*Then, set the field Legs to true else set the field Legs to false
 	*/
 
@@ -49,7 +49,7 @@ class Chair extends Furniture {
 		}
 	}
 	/*
-	*Receievs the Strings arms as an argument and if arms equals Y
+	*Receievs the String arms as an argument and if arms equals Y
 	*Then, set the field Arms to true else set the field Arms to false
 	*/
 	public void setArms(String arms) {
@@ -61,7 +61,7 @@ class Chair extends Furniture {
 		}
 	}
 	/*
-	*Receievs the Strings seat as an argument and if seat equals Y
+	*Receievs the String seat as an argument and if seat equals Y
 	*Then, set the field Seat to true else set the field Seat to false
 	*/
 
@@ -74,7 +74,7 @@ class Chair extends Furniture {
 		}
 	}
 	/*
-	*Receievs the Strings cushion as an argument and if cushion equals Y
+	*Receievs the String cushion as an argument and if cushion equals Y
 	*Then, set the field Cushion to true else set the field Cushion to false
 	*/
 
