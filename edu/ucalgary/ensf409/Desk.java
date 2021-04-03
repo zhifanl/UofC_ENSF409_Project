@@ -3,32 +3,32 @@ package edu.ucalgary.ensf409;
 
 class Desk extends Furniture{
 
-    private boolean Legs;
-    private boolean Top;
-    private boolean Drawer;
+	private boolean Legs;
+	private boolean Top;
+	private boolean Drawer;
 
 	private int Price;
-    private String ManuID;
+	private String ManuID;
 
-    public boolean getLegs() {
-        return Legs;
-    }
+	public boolean getLegs() {
+		return Legs;
+	}
 
-    public boolean getTop() {
-        return Top;
-    }
+	public boolean getTop() {
+		return Top;
+	}
 
-    public boolean getDrawer() {
-        return Drawer;
-    }
+	public boolean getDrawer() {
+		return Drawer;
+	}
 
-    public int getPrice(){
-    	return Price;
-    }
+	public int getPrice(){
+		return Price;
+	}
 
-    public String getManuID() {
-        return ManuID;
-    }
+	public String getManuID() {
+		return ManuID;
+	}
 
 	public void setLegs(String legs) {
 		if(legs.equals("Y")) {

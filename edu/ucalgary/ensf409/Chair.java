@@ -2,26 +2,26 @@ package edu.ucalgary.ensf409;
 
 
 class Chair extends Furniture {
-    private boolean Legs;
-    private boolean Arms;
-    private boolean Seat;
-    private boolean Cushion;
+	private boolean Legs;
+	private boolean Arms;
+	private boolean Seat;
+	private boolean Cushion;
 
-    public boolean getLegs() {
-        return Legs;
-    }
+	public boolean getLegs() {
+		return Legs;
+	}
 
-    public boolean getArms() {
-        return Arms;
-    }
+	public boolean getArms() {
+		return Arms;
+	}
 
-    public boolean getSeat() {
-        return Seat;
-    }
+	public boolean getSeat() {
+		return Seat;
+	}
 
-    public boolean getCushion() {
-        return Cushion;
-    }
+	public boolean getCushion() {
+		return Cushion;
+	}
 
 	public void setLegs(String legs) {
 		if(legs.equals("Y")) {

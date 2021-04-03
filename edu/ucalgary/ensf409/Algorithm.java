@@ -9,7 +9,7 @@ public class Algorithm {
 	private int requiredTimes=0;
 	private String classType;
 	private LinkedList<Furniture[]>results=new LinkedList<>();
-	
+
 	@SuppressWarnings("unchecked")
 	public String[][] findCheapestSet(LinkedList<Furniture> list,int requiredTimes, String classType) {
 		this.list=(LinkedList<Furniture>)list.clone();
@@ -21,12 +21,12 @@ public class Algorithm {
 		}
 		return findBestPrice();
 	}
-	
+
 	public String[][] findBestPrice() {
 		int bestPrice=Integer.MAX_VALUE;
 		String[][]bestIDsPrice=null;
 		int bestIndex=0;
-		
+
 		for(int i=0;i<results.size();i++) {
 			int currentPrice=0;
 			for(int j=0;j<results.get(i).length;j++) {
@@ -46,7 +46,7 @@ public class Algorithm {
 		bestIDsPrice[1][0]=String.valueOf(bestPrice);
 		return bestIDsPrice;
 	}
-				
+
 	public void DFS(LinkedList<Furniture>list) {
 		if(list.size()==0) {
 			return;

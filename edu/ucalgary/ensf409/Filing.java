@@ -3,21 +3,21 @@ package edu.ucalgary.ensf409;
 
 class Filing extends Furniture{
 
-    private boolean Rails;
-    private boolean Drawers;
-    private boolean Cabinet;
+	private boolean Rails;
+	private boolean Drawers;
+	private boolean Cabinet;
 
-    public boolean getRails() {
-        return Rails;
-    }
+	public boolean getRails() {
+		return Rails;
+	}
 
-    public boolean getDrawers() {
-        return Drawers;
-    }
+	public boolean getDrawers() {
+		return Drawers;
+	}
 
-    public boolean getCabinet() {
-        return Cabinet;
-    }
+	public boolean getCabinet() {
+		return Cabinet;
+	}
 
 	public void setRails(String rails) {
 		if(rails.equals("Y")) {

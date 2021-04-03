@@ -3,16 +3,16 @@ package edu.ucalgary.ensf409;
 
 class Lamp extends Furniture{
 
-    private boolean Base;
-    private boolean Bulb;
+	private boolean Base;
+	private boolean Bulb;
 
-    public boolean getBase() {
-        return Base;
-    }
+	public boolean getBase() {
+		return Base;
+	}
 
-    public boolean getBulb() {
-        return Bulb;
-    }
+	public boolean getBulb() {
+		return Bulb;
+	}
 
 	public void setBase(String base) {
 		if(base.equals("Y")) {

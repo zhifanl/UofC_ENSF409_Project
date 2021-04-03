@@ -1,6 +1,8 @@
 package edu.ucalgary.ensf409;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.*;
 import javax.swing.*;
 /**
@@ -8,7 +10,7 @@ import javax.swing.*;
  * @author  Taimoor Abrar, Manpreet Singh 
  *
  */
-public class GUIApp extends JFrame{
+public class GUIApp extends JFrame {
 	/**
 	 * 
 	 */
@@ -61,7 +63,6 @@ public class GUIApp extends JFrame{
 	 * @param rc RegsitrationClient
 	 */
     public GUIApp() {
-    	
     	usernameLabel = new JLabel();
     	usernameLabel.setText("User Name:");
         usernameText = new JTextField();
@@ -81,7 +82,7 @@ public class GUIApp extends JFrame{
         add(panel, BorderLayout.CENTER);
         setTitle("Please Login Here!");
         setSize(300,150);
-        
+       
         submit.addActionListener((ActionEvent e) ->{
     	   String username = usernameText.getText();
     	   char[] password = passwordText.getPassword();
@@ -95,6 +96,24 @@ public class GUIApp extends JFrame{
         });
         setVisible(true);
     }
-   
-   
+
+	public GUIApp(String output) {
+		 JFrame frame=new JFrame("Output information"); 
+		 JPanel jp=new JPanel();    
+		JTextArea outputObj=new JTextArea();
+		outputObj.setFont (outputObj.getFont ().deriveFont (20.0f));
+		outputObj.setBackground(Color.white);
+		JScrollPane jsp=new JScrollPane(outputObj);
+		outputObj.setText(output);
+		jp.add(jsp);
+		jp.add(outputObj);
+		frame.add(jp);
+		frame.setSize(600,600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setLocation(400, 125);
+		
+	}
+
+
 }
