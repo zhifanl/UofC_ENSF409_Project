@@ -28,7 +28,7 @@ class Filing extends Furniture{
 		return Cabinet;
 	}
 	/*
-	*Receievs the String rails as an argument and if rails equals Y
+	*Receives the String rails as an argument and if rails equals Y
 	*Then, set the field Rails to true else set the field Rails to false
 	*/
 
@@ -41,7 +41,7 @@ class Filing extends Furniture{
 		}
 	}
 	/*
-	*Receievs the String drawers as an argument and if drawers equals Y
+	*Receives the String drawers as an argument and if drawers equals Y
 	*Then, set the field Drawers to true else set the field Drawers to false
 	*/
 
@@ -54,7 +54,7 @@ class Filing extends Furniture{
 		}
 	}
 	/*
-	*Receievs the String cabinet as an argument and if cabinet equals Y
+	*Receives the String cabinet as an argument and if cabinet equals Y
 	*Then, set the field Cabinet to true else set the field Cabinet to false
 	*/
 
