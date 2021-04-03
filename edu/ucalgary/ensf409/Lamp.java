@@ -21,7 +21,7 @@ class Lamp extends Furniture{
 	}
 	
 	/*
-	*Receievs the Strings base as an argument and if base equals Y
+	*Receievs the String base as an argument and if base equals Y
 	*Then, set the field Base to true else set the field Base to false
 	*/
 	public void setBase(String base) {
@@ -34,7 +34,7 @@ class Lamp extends Furniture{
 	}
 	
 	/*
-	*Receievs the Strings bulb as an argument and if bulb equals Y
+	*Receievs the String bulb as an argument and if bulb equals Y
 	*Then, set the field Bulb to true else set the field Bulb to false
 	*/
 	public void setBulb(String bulb) {
