@@ -9,6 +9,11 @@ public class Algorithm {
 	private int requiredTimes=0;
 	private String classType;
 	private LinkedList<Furniture[]>results=new LinkedList<>();
+	
+	/*
+	* Member function findCheapestSet receives LinkedList list, integer requiredTimes, String classType as its arguments
+	*and set all the fields to their respecive arguments and returns the member function findBestPrice()
+	*/
 
 	@SuppressWarnings("unchecked")
 	public String[][] findCheapestSet(LinkedList<Furniture> list,int requiredTimes, String classType) {
