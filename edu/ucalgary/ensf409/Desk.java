@@ -44,7 +44,7 @@ class Desk extends Furniture{
 		return ManuID;
 	}
 	/*
-	*Receievs the Strings legs as an argument and if legs equals Y
+	*Receievs the String legs as an argument and if legs equals Y
 	*Then, set the field Legs to true else set the field Legs to false
 	*/
 
@@ -57,7 +57,7 @@ class Desk extends Furniture{
 		}
 	}
 	/*
-	*Receievs the Strings top as an argument and if top equals Y
+	*Receievs the String top as an argument and if top equals Y
 	*Then, set the field Top to true else set the field Top to false
 	*/
 
@@ -70,7 +70,7 @@ class Desk extends Furniture{
 		}
 	}
 	/*
-	*Receievs the Strings drawer as an argument and if drawer equals Y
+	*Receievs the String drawer as an argument and if drawer equals Y
 	*Then, set the field Drawer to true else set the field Drawer to false
 	*/
 
