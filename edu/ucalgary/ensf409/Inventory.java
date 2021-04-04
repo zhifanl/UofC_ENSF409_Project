@@ -11,11 +11,13 @@ import java.util.LinkedList;
  * @version 1.0
  * @since   1.0
  */
-
+/**
+ * Class Inventory
+ */
 public class Inventory {
-	public final String DBURL; //store the database url information
-	public final String USERNAME; //store the user's account username
-	public final String PASSWORD; //store the user's account password
+	private final String DBURL; //store the database url information
+	private final String USERNAME; //store the user's account username
+	private final String PASSWORD; //store the user's account password
 
 	private Connection dbConnect;
 	private ResultSet results;
@@ -59,7 +61,7 @@ public class Inventory {
 	/**
 	 * method to create a connection to the database
 	 * store the instance into data member dbConnect
-	 * @throws SQLException 
+	 * @throws SQLException if anything causes exception with database (wrong url,wrong user name, wrong password)
 	 */
 	public void initializeConnection() throws SQLException {
 		try {
@@ -69,6 +71,20 @@ public class Inventory {
 		}
 	}
 
+	/**
+	 * 
+	 * @param tableName is the name of category
+	 * @return a linked list of the result from database searching
+	 * if the tableName matches the existing category name,
+	 * create Statement from Connection class and execute the statement,
+	 * select everything from the table specified depends on it s category
+	 * then the results will have the data from database
+	 * in the while loop, create new category object and set the value from database to that new object,
+	 * add that object into the result list for further use.
+	 * it will catch any SQLException and print stacktrace for you
+	 * and close the statement and results if they are not null
+	 * return the result list at the end 
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public LinkedList selectAllFromTable(String tableName) {
 		LinkedList result = null;
@@ -78,7 +94,7 @@ public class Inventory {
 			try {
 				Stmt = dbConnect.createStatement();
 				result = new LinkedList<Chair> ();
-				results = Stmt.executeQuery("SELECT * FROM CHAIR");
+				results = Stmt.executeQuery("SELECT * FROM CHAIR"); //statement to get Chair table from database
 				while(results.next()) {
 					Chair temp = new Chair ();
 					temp.setID(results.getString("ID"));
@@ -95,7 +111,7 @@ public class Inventory {
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
-				if(Stmt!=null) {
+				if(Stmt!=null) { //try to close the statement and results
 					try {
 						Stmt.close();
 					} catch (SQLException e) {
@@ -259,6 +275,17 @@ public class Inventory {
 		return result;
 	}
 
+	/**
+	 * @param category the category from input order
+	 * @param type the type of category from input order
+	 * @return the list of searched result
+	 * see if the category String will match the 4 if statement, if it does
+	 * go into the if statement and call selectAllFromTable to get all the object with expected category specified
+	 * use a for loop to see if there is any object in that category match the required type,
+	 * if yes, add that to result list.
+	 * if cannot find anything, throw an IllegalArgumentException and a message to tell the user that cannot find it.
+	 * return the result as linked list.
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public LinkedList selectTypeFromCategory(String category, String type){
 		if(category.matches("CHAIR")) {
@@ -322,6 +349,14 @@ public class Inventory {
 		}
 	}
 
+	/**
+	 * @param tableName specified category to be deleted from
+	 * @param ID the ID to be deleted from that table
+	 * if the table name does not match any existing category, do nothing and return
+	 * if table name exists, create a preparedStatement from connection object and execute the statement
+	 * it will catch any SQLException and print stack trace for user
+	 * at the end, if statement exits, close it.
+	 */
 	public void deleteFromTable(String tableName, String ID) {
 		if(!tableName.matches("CHAIR") && !tableName.matches("LAMP") && !tableName.matches("DESK") && !tableName.matches("FILING")) {
 			return;

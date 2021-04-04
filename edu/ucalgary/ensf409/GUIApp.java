@@ -7,6 +7,8 @@ import javax.swing.*;
 /**
  * This class creates GUI for user sign-in to the database they want and handles its functionality.
  * @author  Taimoor Abrar, Manpreet Singh 
+ * @version 1.0
+ * @since 1.0
  *
  */
 public class GUIApp extends JFrame {

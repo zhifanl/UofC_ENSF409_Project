@@ -56,7 +56,7 @@ public class TestMySystem {
 	 * Boundary case: wrong category name given (DESKII is invalid), excepted to throw exception
 	 * @throws SQLException 
 	 */
-	@Test(expected=Exception.class)
+	@Test(expected=IllegalArgumentException.class)
 	//Put wrong Category name
 	public void TestWrongCategory() throws SQLException  {
 		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","ensf409test","password");
@@ -70,7 +70,7 @@ public class TestMySystem {
 	 * Boundary case: wrong type name given,AAAAAASTANING is invalid, expected to throw exception
 	 * @throws SQLException 
 	 */
-	@Test(expected=Exception.class)
+	@Test(expected=IllegalArgumentException.class)
 	public void TestWrongTypeName() throws SQLException {
 		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","ensf409test","password");
 		myJDBC.initializeConnection();
@@ -84,7 +84,7 @@ public class TestMySystem {
 	 * Boundary case: wrong order number -1 given,expected to throw exception
 	 * @throws SQLException 
 	 */
-	@Test(expected=Exception.class)
+	@Test(expected=IllegalArgumentException.class)
 	public void TestInvalidOrderNumber() throws SQLException {
 		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","ensf409test","password");
 		myJDBC.initializeConnection();
@@ -99,7 +99,7 @@ public class TestMySystem {
 	 * Boundary case: wrong order number 0 given,expected to throw exception
 	 * @throws SQLException 
 	 */
-	@Test(expected=Exception.class)
+	@Test(expected=IllegalArgumentException.class)
 	public void TestInvalidOrderNumber2() throws SQLException {
 		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","ensf409test","password");
 		myJDBC.initializeConnection();

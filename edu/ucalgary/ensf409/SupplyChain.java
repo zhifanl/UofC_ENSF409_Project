@@ -10,16 +10,40 @@ import java.util.LinkedList;
  * @version 1.3
  * @since 1.0
  */
+/**
+ * class SupplyChain
+ */
 public class SupplyChain{
 	String outputFileName;
 	String inputFileName;
 	String inputString;
 	String username;
 	String password;
+	
+	/**
+	 * Constructor of SupplyChain
+	 * @param username user name of database
+	 * @param password password of user name
+	 */
 	public SupplyChain(String username,String password) {
 		this.username=username;//set user name
 		this.password=password;//set password
 	}
+	/**
+	 * @param input the input contains category, type and number of order required
+	 * @return an integer
+	 * @throws SQLException if something is wrong with database connection, statement executing, closing any statement or database connection
+	 * Receive the input, split them into array of String
+	 * consider special case swing arm lamp, which has space between swing and arm,
+	 * if requiredTimeis smaller than zero, return IllegalArgumentException and prompt the user that input number is invalid.
+	 * create inventory class object and initialize connection from database.
+	 * and get all the manufacturer information from database for further use.
+	 * Create algorithm object, and depends on the input, call the findCheapestSet method based on its category.
+	 * findCheapestSet will return a 2-D String that result[0] contains the list of furniture that fits the order and required number of items, and with cheapest price.
+	 * if result is null, if cannot find any array of furniture that fits the order, go to searchedManu and if any furniture from searchedResult's furniture object's ManuID matches the Manufacturer ID, 
+	 * add that manufacturer name to the suggestedManufacturer linked list. and call writeFileException method to output the suggested manufacturer
+	 * if result is not null, order can be fulfilled, call writeFile method to output the IDs and total price to user.
+	 */
 	@SuppressWarnings("unchecked") //do not let it create any warnings
 	public int execute(String input) throws SQLException{
 		input = input.replaceAll("[^-0-9a-zA-Z ]", " ");
@@ -88,6 +112,9 @@ public class SupplyChain{
 
 	/**
 	 * @param suggestedManufacturer the LinkedList of manufacturer that suggested
+	 * Write the suggest manufacturuer's name to the output file, 
+	 * by creating FileWriter and write to file, then close the FileWriter.
+	 * and it calls GUIApp constructor that will show GUI to user for convenience and better user experience
 	 */
 	public void writeFileException( LinkedList<String>suggestedManufacturer) {
 		try{
@@ -109,6 +136,9 @@ public class SupplyChain{
 
 	/**
 	 * @param result 2-D array of String of store the order information
+	 * Write the IDs and total price from result[0] and result[1] to file specified, 
+	 * by creating FileWriter and write to file, then close the FileWriter.
+	 * and it calls GUIApp constructor that will show GUI to user for convenience and better user experience
 	 */
 	public void writeFile(String[][]result){
 		try{
@@ -140,6 +170,7 @@ public class SupplyChain{
 	}
 	/**
 	 * @param error Write to the file input error
+	 * if the input is in incorrect format, it will write to the file as "Input file error."
 	 */
 	public void writeFileError(String error) {
 		try{
@@ -154,6 +185,11 @@ public class SupplyChain{
 	 * @param inputFileName1 input file name
 	 * @param outputFileName1 output file name 
 	 * @throws SQLException 
+	 * first create new File object of specified and see if it exists or readable
+	 * create new output file for further use, it also refreshes the older output file
+	 * see if input contains "User request: ", if no, write input file error to output file and exit.
+	 * call execute method the execute the request.
+	 * close the FileReader, BufferedReader, and catch any IOException, and print to console: Cannot read File.
 	 */
 	public void readInput(String inputFileName1,String outputFileName1) throws SQLException {
 		File f = null;

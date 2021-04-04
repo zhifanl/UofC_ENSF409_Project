@@ -1,5 +1,10 @@
 package edu.ucalgary.ensf409;
-
+/**
+ * @author  Tianfan Zhou, Manpreet Singh
+ * @version 1.0
+ * @since 1.0
+ *
+ */
 
 public abstract class Furniture {
 	private String ID;
