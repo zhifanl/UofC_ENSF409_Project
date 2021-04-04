@@ -1,5 +1,7 @@
 package edu.ucalgary.ensf409;
 
+import java.sql.SQLException;
+
 /**
  * @author Tianfan Zhou, Zhifan Li, Manpreet Singh, Taimoor Abrar
  * @version 1.0
@@ -7,7 +9,7 @@ package edu.ucalgary.ensf409;
  *
  */
 public class MySystem{
-	public  static void main(String[] args) {
+	public  static void main(String[] args) throws SQLException {
 //		
 //		GUIApp app=new GUIApp();//create GUI
 //
@@ -24,7 +26,7 @@ public class MySystem{
 //		
 //		
 //		SupplyChain obj=new SupplyChain(app.getUsername(),app.getPassword());
-		SupplyChain obj=new SupplyChain("tianfan","Wenyan3524");
+		SupplyChain obj=new SupplyChain("scm","ensf409");
 
 		obj.readInput(args[0],args[1]);//start executing the input order command.
 	}

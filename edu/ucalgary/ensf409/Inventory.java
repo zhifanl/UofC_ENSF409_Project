@@ -59,12 +59,13 @@ public class Inventory {
 	/**
 	 * method to create a connection to the database
 	 * store the instance into data member dbConnect
+	 * @throws SQLException 
 	 */
-	public void initializeConnection() {
+	public void initializeConnection() throws SQLException {
 		try {
 			dbConnect = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
 		}catch (SQLException e) {
-			e.printStackTrace();
+			throw new SQLException("Wrong DBURL or Username or Password given");
 		}
 	}
 
@@ -268,6 +269,9 @@ public class Inventory {
 					result.add(temp.get(i));
 				}
 			}
+			if(result.size()==0) {
+				throw new IllegalArgumentException("Cannot find required Type");
+			}
 			return result;
 		}
 
@@ -278,6 +282,9 @@ public class Inventory {
 				if(temp.get(i).getType().toUpperCase().matches(type)) {
 					result.add(temp.get(i));
 				}
+			}
+			if(result.size()==0) {
+				throw new IllegalArgumentException("Cannot find required Type");
 			}
 			return result;
 		}
@@ -290,6 +297,9 @@ public class Inventory {
 					result.add(temp.get(i));
 				}
 			}
+			if(result.size()==0) {
+				throw new IllegalArgumentException("Cannot find required Type");
+			}
 			return result;
 		}
 
@@ -301,11 +311,14 @@ public class Inventory {
 					result.add(temp.get(i));
 				}
 			}
+			if(result.size()==0) {
+				throw new IllegalArgumentException("Cannot find required Type");
+			}
 			return result;
 		}
 
 		else {
-			return null;
+			throw new IllegalArgumentException("Cannot find required Category");
 		}
 	}
 

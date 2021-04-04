@@ -2,6 +2,7 @@ package edu.ucalgary.ensf409;
 
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 /**
@@ -20,8 +21,8 @@ public class SupplyChain{
 		this.password=password;//set password
 	}
 	@SuppressWarnings("unchecked") //do not let it create any warnings
-	public int execute(String input){
-		input = input.replaceAll("[^0-9a-zA-Z ]", " ");
+	public int execute(String input) throws SQLException{
+		input = input.replaceAll("[^-0-9a-zA-Z ]", " ");
 		//Remove all chars except "0-9","A-Z","a-z";
 		input=input.toUpperCase();
 		String inputArray[] = input.split("\\s+");//split the input into an array of strings
@@ -32,6 +33,9 @@ public class SupplyChain{
 			inputArray[2]=inputArray[3];
 		}//special case: swing arm lamp, since there is an empty space between swing and arm, we need to manually changed it to the array.
 		int requiredTimes=Integer.parseInt(inputArray[2]); //required number of order
+		if(requiredTimes<=0) {
+			throw new IllegalArgumentException("The number you ordered is less than or equals to zero...");
+		}
 		String[][] result= null;
 
 		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory",username,password);  //create Inventory object and also connect to database.
@@ -43,9 +47,7 @@ public class SupplyChain{
 		LinkedList<Furniture> searchedResults=(LinkedList<Furniture>)myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
 		//get the result with specified type and category in a LinkedList
 
-		if(searchedResults==null) {
-			return -1;
-		}
+		
 		// If cannot find anything, return directly
 		Algorithm obj=new Algorithm();
 		//generate an algorithm object
@@ -151,8 +153,9 @@ public class SupplyChain{
 	/**
 	 * @param inputFileName1 input file name
 	 * @param outputFileName1 output file name 
+	 * @throws SQLException 
 	 */
-	public void readInput(String inputFileName1,String outputFileName1) {
+	public void readInput(String inputFileName1,String outputFileName1) throws SQLException {
 		File f = null;
 		inputFileName=inputFileName1;
 		outputFileName=outputFileName1;
