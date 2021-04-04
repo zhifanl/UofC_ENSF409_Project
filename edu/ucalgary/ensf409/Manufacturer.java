@@ -11,26 +11,26 @@ class Manufacturer {
 	 * Set the String value to ManuID
 	 */
 	public void setManuID(String manuID) {
-		ManuID = manuID;
+		this.ManuID = manuID;
 	}
 	/*
 	 * Set the String value to Name
 	 */
 	public void setName(String name) {
-		Name = name;
+		this.Name = name;
 	}
 
 	/*
 	 * Set the String value to Phone
 	 */
 	public void setPhone(String phone) {
-		Phone = phone;
+		this.Phone = phone;
 	}
 	/*
 	 * Set the String value to Province
 	 */
 	public void setProvince(String province) {
-		Province = province;
+		this.Province = province;
 	}
 	/*
 	 * returns ManuID
