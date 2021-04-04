@@ -8,11 +8,17 @@ import org.junit.Test;
  * ****************************************************************************************************************
  * !!!!!!!Requirement for running this Junit Testing program!!!!!!.
  * 1. need to create a local mysql user with username: "ensf409test", and password: "password"
- * 2. need to use the inventory database, to use that database, type: "source" and "the location of inventory file"
+ * 2. need to use the inventory database, to use that database, type: "source" and "the location of inventory.sql"
  * 3. Now it is good to run this program.
  * 
+ * To run this on command line: 
+ * 1. make sure junit-4.13.2.jar, hamcrest-core-1.3.jar, mysql-connector-java-8.0.23.jar are in working directory, thus, besides edu folder
+ * 2. javac -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar:mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/TestMySystem.java
+ * 3. java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar:mysql-connector-java-8.0.23.jar org.junit.runner.JUnitCore edu.ucalgary.ensf409.TestMySystem
  * 
- * Boundary cases tests: TestConnection(), TestConnectionURL(),TestWrongCategory(),TestWrongTypeName(),TestInvalidOrderNumber()
+ * 
+ * 
+ * Boundary cases tests: TestConnection() (testing wrong user name) , TestConnectionURL(),TestWrongCategory(),TestWrongTypeName(),TestInvalidOrderNumber()
  * The rest of the test cases: Test if the result from Algorithm.findCheapestSet() will match the expected result.
  * 
  * 
@@ -127,7 +133,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("150");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -148,7 +154,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -169,7 +175,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -191,7 +197,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("400");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -202,7 +208,7 @@ public class TestMySystem {
 	 * @throws SQLException
 	 */
 	@Test
-	public void TestExecutiveChair2()throws SQLException {
+	public void TestExecutiveChair2() throws SQLException{
 		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory","ensf409test","password");
 		myJDBC.initializeConnection();
 		LinkedList<Furniture>searchedResults=myJDBC.selectTypeFromCategory("CHAIR", "EXECUTIVE");
@@ -212,7 +218,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -234,7 +240,7 @@ public class TestMySystem {
 		boolean isTwoEqual = result[1][0].equals("250");
 		//200+50=250
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -256,7 +262,7 @@ public class TestMySystem {
 		boolean isTwoEqual = result==null;
 		//200+50=250
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -277,7 +283,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -299,7 +305,7 @@ public class TestMySystem {
 		boolean isTwoEqual = result[1][0].equals("150");
 
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -321,7 +327,7 @@ public class TestMySystem {
 		boolean isTwoEqual = result==null;
 
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -343,7 +349,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("20");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -365,7 +371,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("40");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -387,7 +393,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("60");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -410,7 +416,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -432,7 +438,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("30");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -454,7 +460,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("60");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -475,7 +481,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -498,7 +504,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("10");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -519,7 +525,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("20");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -541,7 +547,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -562,7 +568,7 @@ public class TestMySystem {
 		String[][] result=obj.findCheapestSet(searchedResults,1,"FILING");
 		boolean isTwoEqual = result[1][0].equals("100");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -585,7 +591,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("200");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -607,7 +613,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("300");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -630,7 +636,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -650,7 +656,7 @@ public class TestMySystem {
 		String[][] result=obj.findCheapestSet(searchedResults,1,"FILING");
 		boolean isTwoEqual = result[1][0].equals("200");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -671,7 +677,7 @@ public class TestMySystem {
 		String[][] result=obj.findCheapestSet(searchedResults,2,"FILING");
 		boolean isTwoEqual = result[1][0].equals("400");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -692,7 +698,7 @@ public class TestMySystem {
 		//will not find anything,  so return null;
 		boolean isTwoEqual = result[1][0].equals("650");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -714,7 +720,7 @@ public class TestMySystem {
 		//will not find anything,  so return null;
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -735,7 +741,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("300");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -756,7 +762,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("600");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -777,7 +783,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -800,7 +806,7 @@ public class TestMySystem {
 		boolean isTwoEqual = result[1][0].equals("100");
 
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -823,7 +829,7 @@ public class TestMySystem {
 		boolean isTwoEqual = result[1][0].equals("200");
 
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -847,7 +853,7 @@ public class TestMySystem {
 		boolean isTwoEqual = result==null;
 
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -870,7 +876,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("250");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -892,7 +898,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("650");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -914,7 +920,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("1050");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -937,7 +943,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
@@ -958,7 +964,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("300");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -980,7 +986,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result[1][0].equals("600");
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal to expected price...",a,"true");
 	}
 
 
@@ -1002,7 +1008,7 @@ public class TestMySystem {
 
 		boolean isTwoEqual = result==null;
 		String a=String.valueOf(isTwoEqual);
-		assertEquals(a,"true");
+		assertEquals("Does not equal null...",a,"true");
 	}
 
 
