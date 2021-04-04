@@ -35,25 +35,25 @@ public abstract class Furniture {
 	 * Set the String value to ID
 	 */
 	public void setID(String iD) {
-		ID = iD;
+		this.ID = iD;
 	}
 	/*
 	 * Set the String value to Type
 	 */
 	public void setType(String type) {
-		Type = type;
+		this.Type = type;
 	}
 	/*
 	 * Set the String value to Price
 	 */
 	public void setPrice(int price) {
-		Price = price;
+		this.Price = price;
 	}
 	/*
 	 * Set the String value to ManuID
 	 */
 	public void setManuID(String manuID) {
-		ManuID = manuID;
+		this.ManuID = manuID;
 	}
 
 }
