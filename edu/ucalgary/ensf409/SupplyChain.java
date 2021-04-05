@@ -14,11 +14,11 @@ import java.util.LinkedList;
  * class SupplyChain
  */
 public class SupplyChain{
-	String outputFileName;
-	String inputFileName;
-	String inputString;
-	String username;
-	String password;
+	private String outputFileName;
+	private String inputFileName;
+	private String inputString;
+	private String username;
+	private String password;
 	
 	/**
 	 * Constructor of SupplyChain
@@ -64,7 +64,8 @@ public class SupplyChain{
 
 		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/inventory",username,password);  //create Inventory object and also connect to database.
 		myJDBC.initializeConnection(); //connect to database.
-
+		
+		String tableName=null;
 		LinkedList<String>suggestedManufacturer=new LinkedList<>();
 		LinkedList<Manufacturer>searchedManu=myJDBC.selectAllFromTable("MANUFACTURER"); // do searching to get all the Manufacturer information into the linked list object.
 
@@ -78,18 +79,22 @@ public class SupplyChain{
 		//if category is chair
 		if(inputArray[1].equals("CHAIR")) {
 			result = obj.findCheapestSet(searchedResults,requiredTimes,"CHAIR");
+			tableName="CHAIR";
 		}
 		//if category is desk
 		else if(inputArray[1].equals("DESK")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"DESK");
+			tableName="DESK";
 		}
 		//if category is lamp
 		else if(inputArray[1].equals("LAMP")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"LAMP");
+			tableName="LAMP";
 		}
 		//if category is filing
 		else if(inputArray[1].equals("FILING")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"FILING");
+			tableName="FILING";
 		}
 		if(result==null) {
 			for(int i=0;i<searchedManu.size();i++ ) {
@@ -106,6 +111,9 @@ public class SupplyChain{
 		}
 		else {
 			writeFile(result); // if there exists correct order, then write the detailed order information to the file(IDs and total prices)
+			for(int i=0;i<result[0].length;i++) {
+				myJDBC.deleteFromTable(tableName, result[0][i]);
+			}
 			return 1;
 		}
 	}

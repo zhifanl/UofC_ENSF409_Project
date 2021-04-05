@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * ****************************************************************************************************************
  * !!!!!!!Requirement for running this Junit Testing program!!!!!!.
- * 1. need to create a local mysql user with username: "ensf409test", and password: "password"
+ * 1. need to create a local mysql user with username: "scm", and password: "ensf409"
  * 2. need to use the inventory database, to use that database, type: "source" and "the location of inventory.sql"
  * 3. Now it is good to run this program.
  * 
@@ -52,7 +52,7 @@ public class TestMySystem {
 	 */
 	@Test(expected=SQLException.class)
 	public void TestConnectionURL() throws SQLException {
-		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/wrongname","ensf409test","password");
+		Inventory myJDBC = new Inventory("jdbc:mysql://localhost/wrongname","scm","ensf409");
 		myJDBC.initializeConnection();
 	}
 
