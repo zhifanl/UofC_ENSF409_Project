@@ -20,8 +20,8 @@ All the java file is in edu/ucalgary/ensf409
 where inputFileName should already exist in the working directory, and outputFileName can be named the way you want, and it will be produced in the working directory.
 
 UML Diagram is here: 
-https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/uml.png
-![...](https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/uml.png)
+https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/UML_Diagram.png
+![...](https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/UML_Diagram.png)
 
 # How this project is designed:
 
