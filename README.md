@@ -15,7 +15,7 @@ All the java file is in edu/ucalgary/ensf409
 # To Run the program 
 1. clone the code
 2. javac edu/ucalgary/ensf409/MySystem.java 
-3. java edu/ucalgary/ensf409/MySystem inputFileName outputFileName
+3. java edu/ucalgary/ensf409/MySystem 
 
 * main method is in MySystem.java
 * How to run this program: 
