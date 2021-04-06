@@ -14,8 +14,7 @@ import java.util.LinkedList;
  * class SupplyChain
  */
 public class SupplyChain{
-	private String outputFileName;
-	private String inputFileName;
+	private String outputFileName="Output.txt";
 	private String inputString;
 	private String username;
 	private String password;
@@ -25,9 +24,10 @@ public class SupplyChain{
 	 * @param username user name of database
 	 * @param password password of user name
 	 */
-	public SupplyChain(String username,String password) {
+	public SupplyChain(String username,String password,String inputString) {
 		this.username=username;//set user name
 		this.password=password;//set password
+		this.inputString=inputString;//set inputString
 	}
 	/**
 	 * @param input the input contains category, type and number of order required
@@ -35,6 +35,7 @@ public class SupplyChain{
 	 * @throws SQLException if something is wrong with database connection, statement executing, closing any statement or database connection
 	 * Receive the input, split them into array of String
 	 * consider special case swing arm lamp, which has space between swing and arm,
+	 * if input received is not valid (the array length that stores them is not 3), throw exception and prompt user the error, and terminates.
 	 * if requiredTimeis smaller than zero, return IllegalArgumentException and prompt the user that input number is invalid.
 	 * create inventory class object and initialize connection from database.
 	 * and get all the manufacturer information from database for further use.
@@ -50,15 +51,32 @@ public class SupplyChain{
 		//Remove all chars except "0-9","A-Z","a-z";
 		input=input.toUpperCase();
 		String inputArray[] = input.split("\\s+");//split the input into an array of strings
-
+		
 		if(inputArray[0].equals("SWING")&&inputArray[1].equals("ARM")&&inputArray[2].equals("LAMP")) {
 			inputArray[0]="SWING ARM";
 			inputArray[1]="LAMP";
 			inputArray[2]=inputArray[3];
 		}//special case: swing arm lamp, since there is an empty space between swing and arm, we need to manually changed it to the array.
-		int requiredTimes=Integer.parseInt(inputArray[2]); //required number of order
+		
+		if(inputArray.length!=3) {
+			new GUIApp("Input request is not correct... System exits");
+			writeFileError("Input request is not correct... System exits"); // write error message to output file
+			throw new IllegalArgumentException("Input request is not correct... System exits"); //throw an exception and terminates the program.
+
+		}// if the inputArray is not appropriate, use GUI to prompt user to type again and stop the program.
+		
+		int requiredTimes=0;
+		try{
+		requiredTimes=Integer.parseInt(inputArray[2]); //required number of order
+		}catch(NumberFormatException e) {
+			new GUIApp("The number you ordered is not a integer...");
+			writeFileError("The number you ordered is not a integer...");// write error message to output file
+			throw new IllegalArgumentException("The number you ordered is not a integer...");// if input is not integer,  use GUI to prompt the user and terminate the program
+		}
 		if(requiredTimes<=0) {
-			throw new IllegalArgumentException("The number you ordered is less than or equals to zero...");
+			new GUIApp("The number you ordered is less than or equals to zero...");
+			writeFileError("The number you ordered is less than or equals to zero...");// write error message to output file
+			throw new IllegalArgumentException("The number you ordered is less than or equals to zero..."); //throw an exception and terminates the program.
 		}
 		String[][] result= null;
 
@@ -120,7 +138,7 @@ public class SupplyChain{
 
 	/**
 	 * @param suggestedManufacturer the LinkedList of manufacturer that suggested
-	 * Write the suggest manufacturuer's name to the output file, 
+	 * Write the suggest manufacturuer's name to the Output.txt file, 
 	 * by creating FileWriter and write to file, then close the FileWriter.
 	 * and it calls GUIApp constructor that will show GUI to user for convenience and better user experience
 	 */
@@ -178,61 +196,36 @@ public class SupplyChain{
 	}
 	/**
 	 * @param error Write to the file input error
-	 * if the input is in incorrect format, it will write to the file as "Input file error."
+	 * if the input is in incorrect format, it will write to the file as the parameter it receives and use GUI to prompt the user.
 	 */
-	public void writeFileError(String error) {
+	public static void writeFileError(String error) {
 		try{
-			FileWriter myWriter=new FileWriter(outputFileName,true);
+			FileWriter myWriter=new FileWriter("Output.txt",true);
 			myWriter.write(error);
 			myWriter.close();
+			new GUIApp(error);
 		}catch(IOException e) {
 			System.out.println("An error occurred.");
+			
 		}
 	}
 	/**
-	 * @param inputFileName1 input file name
-	 * @param outputFileName1 output file name 
+	 * @param input input the user puts in GUI
 	 * @throws SQLException 
-	 * first create new File object of specified and see if it exists or readable
+	 * @throws  IOException
 	 * create new output file for further use, it also refreshes the older output file
-	 * see if input contains "User request: ", if no, write input file error to output file and exit.
+	 * trim the spaces of the input information
 	 * call execute method the execute the request.
-	 * close the FileReader, BufferedReader, and catch any IOException, and print to console: Cannot read File.
 	 */
-	public void readInput(String inputFileName1,String outputFileName1) throws SQLException {
-		File f = null;
-		inputFileName=inputFileName1;
-		outputFileName=outputFileName1;
-		try {
-			f = new File(inputFileName);
-			if (!f.exists()) {
-				throw new FileNotFoundException("File does not exist");
-			} else if (!f.canRead()) {
-				throw new IOException("File is not readable");
-			}
-			FileWriter myWriter = new FileWriter(outputFileName);
+	public void readInput(String input) throws SQLException, IOException {
+		
+			FileWriter myWriter = new FileWriter("Output.txt");
 			myWriter.close();
 			// refresh the old output file. so that every time program runs, it appends new thing to a new output file.
-			FileReader a = new FileReader(f);
-			BufferedReader sc = new BufferedReader(a);
-			String inputCommand = sc.readLine();
-
-			if(inputCommand.contains("User request: ")){ // make sure it reads the correct input
-				int index=inputCommand.indexOf(":")+2;
-				inputCommand=inputCommand.substring(index);
-				inputString=inputCommand;
-				execute(inputCommand); // call the execute method, it contains input information, and inside it, it will create connection to database, do algorithm of searching the best result, and write the correct output to file
-			}
-			else{
-				writeFileError("Input file error.");
-				sc.close();
-				a.close();
-				return;
-			}
-			sc.close();
-			a.close();
-		} catch (IOException e) {
-			System.out.println("Cannot Read File."); // write file cannot read file if the system fails to read it 
-		}
+			input=input.trim(); // trim the spaces
+			execute(input); // call the execute method, it contains input information, and inside it, it will create connection to database, do algorithm of searching the best result, and write the correct output to file
+			
 	}
+		
 }
+

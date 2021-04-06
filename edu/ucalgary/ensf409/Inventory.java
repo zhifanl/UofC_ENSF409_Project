@@ -67,6 +67,7 @@ public class Inventory {
 		try {
 			dbConnect = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
 		}catch (SQLException e) {
+			SupplyChain.writeFileError("Wrong Username or Password given");
 			throw new SQLException("Wrong DBURL or Username or Password given");
 		}
 	}
@@ -297,6 +298,7 @@ public class Inventory {
 				}
 			}
 			if(result.size()==0) {
+				SupplyChain.writeFileError("Cannot find required Type");
 				throw new IllegalArgumentException("Cannot find required Type");
 			}
 			return result;
@@ -311,6 +313,7 @@ public class Inventory {
 				}
 			}
 			if(result.size()==0) {
+				SupplyChain.writeFileError("Cannot find required Type");
 				throw new IllegalArgumentException("Cannot find required Type");
 			}
 			return result;
@@ -325,6 +328,7 @@ public class Inventory {
 				}
 			}
 			if(result.size()==0) {
+				SupplyChain.writeFileError("Cannot find required Type");
 				throw new IllegalArgumentException("Cannot find required Type");
 			}
 			return result;
@@ -339,12 +343,14 @@ public class Inventory {
 				}
 			}
 			if(result.size()==0) {
+				SupplyChain.writeFileError("Cannot find required Type");
 				throw new IllegalArgumentException("Cannot find required Type");
 			}
 			return result;
 		}
 
 		else {
+			SupplyChain.writeFileError("Cannot find required Category");
 			throw new IllegalArgumentException("Cannot find required Category");
 		}
 	}

@@ -17,7 +17,17 @@ All the java file is in edu/ucalgary/ensf409
 2. javac edu/ucalgary/ensf409/MySystem.java 
 3. java edu/ucalgary/ensf409/MySystem inputFileName outputFileName
 
-where inputFileName should already exist in the working directory, and outputFileName can be named the way you want, and it will be produced in the working directory.
+* main method is in MySystem.java
+* How to run this program: 
+* execute the main method and GUI window will pop to the user,
+* in the window, type the user name as "scm", password as "ensf409", which are the default user name and password that this course uses.
+* and type the order request: the format should be similar as this: "mesh chair,1", "executive chair,2", "swing arm lamp,3".
+* then click "submit", and the program will execute these request and use the GUI to give you result, also Output.txt file will be generated that have required information on it.
+* The GUI may give you error message if the user name is not found, or the password is not correct, or the DBURL is not correct in the SupplyChain java file
+* The GUI may give you prompt if you enter a invalid number, also if you enter invalid information for required type or category, it will gives you error message.
+* Every time it gives you error prompt, it will terminate itself, and you need to run this again.
+* Output.txt file will also give error message if there is any error with your inputs.
+* Check Output.txt file every time you finish running the program.
 
 UML Diagram is here: 
 https://github.com/zhifanl/UofC_ENSF409_Project/blob/main/UML_Diagram.png
