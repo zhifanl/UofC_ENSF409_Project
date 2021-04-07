@@ -15,8 +15,9 @@ All the java file is in edu/ucalgary/ensf409
 
 # To Run the program 
 1. clone the code
-2. javac edu/ucalgary/ensf409/MySystem.java 
-3. java edu/ucalgary/ensf409/MySystem 
+2. Must have the jar files placed in the same directory as edu.
+3. javac -cp .:mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/MySystem.java 
+4. java -cp .:mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/MySystem 
 
 * main method is in MySystem.java
 * How to run this program: 
