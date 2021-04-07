@@ -131,7 +131,7 @@ public class TestMySystem {
 		Algorithm obj=new Algorithm();
 		String[][] result=obj.findCheapestSet(searchedResults,1,"CHAIR");
 
-		boolean isTwoEqual = result[1][0].equals("150");
+		boolean isTwoEqual = result[1][0].equals("200");
 		String a=String.valueOf(isTwoEqual);
 		assertEquals("Does not equal to expected price...",a,"true");
 	}
@@ -696,7 +696,7 @@ public class TestMySystem {
 		Algorithm obj=new Algorithm();
 		String[][] result=obj.findCheapestSet(searchedResults,3,"FILING");
 		//will not find anything,  so return null;
-		boolean isTwoEqual = result[1][0].equals("650");
+		boolean isTwoEqual = result[1][0].equals("600");
 		String a=String.valueOf(isTwoEqual);
 		assertEquals("Does not equal to expected price...",a,"true");
 	}
@@ -874,7 +874,7 @@ public class TestMySystem {
 		Algorithm obj=new Algorithm();
 		String[][] result=obj.findCheapestSet(searchedResults,1,"DESK");
 
-		boolean isTwoEqual = result[1][0].equals("250");
+		boolean isTwoEqual = result[1][0].equals("400");
 		String a=String.valueOf(isTwoEqual);
 		assertEquals("Does not equal to expected price...",a,"true");
 	}
@@ -896,7 +896,7 @@ public class TestMySystem {
 		Algorithm obj=new Algorithm();
 		String[][] result=obj.findCheapestSet(searchedResults,2,"DESK");
 
-		boolean isTwoEqual = result[1][0].equals("650");
+		boolean isTwoEqual = result[1][0].equals("800");
 		String a=String.valueOf(isTwoEqual);
 		assertEquals("Does not equal to expected price...",a,"true");
 	}
@@ -918,7 +918,7 @@ public class TestMySystem {
 		Algorithm obj=new Algorithm();
 		String[][] result=obj.findCheapestSet(searchedResults,3,"DESK");
 
-		boolean isTwoEqual = result[1][0].equals("1050");
+		boolean isTwoEqual = result[1][0].equals("1200");
 		String a=String.valueOf(isTwoEqual);
 		assertEquals("Does not equal to expected price...",a,"true");
 	}

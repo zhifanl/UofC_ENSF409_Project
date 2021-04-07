@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class MySystem {
 
 	
-	/**
+	 /**
 	 * main method
 	 * How to run this program: 
 	 * execute the main method and GUI window will pop to the user,
