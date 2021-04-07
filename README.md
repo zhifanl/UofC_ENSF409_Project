@@ -9,6 +9,7 @@ Our Project is in main branch.
 All the java file is in edu/ucalgary/ensf409
 
 # To run Junit: 
+   Must have the jar files placed in the same directory as edu.
 1. javac -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar:mysql-connector-java-8.0.23.jar  edu/ucalgary/ensf409/TestMySystem.java
 2. java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar:mysql-connector-java-8.0.23.jar  org.junit.runner.JUnitCore edu.ucalgary.ensf409.TestMySystem
 
