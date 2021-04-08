@@ -14,6 +14,11 @@ public class MySystem {
 
 	
 	 /**
+	 * To run it on command line:
+	 * Must have the jar files placed in the same directory as edu.
+	 * javac -cp .:mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/MySystem.java 
+	 * java -cp .:mysql-connector-java-8.0.23.jar edu/ucalgary/ensf409/MySystem
+	 * 
 	 * main method
 	 * How to run this program: 
 	 * execute the main method and GUI window will pop to the user,
