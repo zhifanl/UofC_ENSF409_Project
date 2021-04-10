@@ -38,11 +38,11 @@ public class SupplyChain{
 	 * if input received is not valid (the array length that stores them is not 3), throw exception and prompt user the error, and terminates.
 	 * if requiredTimeis smaller than zero, return IllegalArgumentException and prompt the user that input number is invalid.
 	 * create inventory class object and initialize connection from database.
-	 * and get all the manufacturer information from database for further use.
+	 * and get all the required manufacturer information (hard-coded) for further use.
 	 * Create algorithm object, and depends on the input, call the findCheapestSet method based on its category.
 	 * findCheapestSet will return a 2-D String that result[0] contains the list of furniture that fits the order and required number of items, and with cheapest price.
-	 * if result is null, if cannot find any array of furniture that fits the order, go to searchedManu and if any furniture from searchedResult's furniture object's ManuID matches the Manufacturer ID, 
-	 * add that manufacturer name to the suggestedManufacturer linked list. and call writeFileException method to output the suggested manufacturer
+	 * if result is null, if cannot find any array of furniture that fits the order, 
+	 * call writeFileException method to output the suggested manufacturer from String[]suggestedManu, without changing the database.
 	 * if result is not null, order can be fulfilled, call writeFile method to output the IDs and total price to user.
 	 */
 	@SuppressWarnings("unchecked") //do not let it create any warnings
@@ -84,47 +84,63 @@ public class SupplyChain{
 		myJDBC.initializeConnection(); //connect to database.
 		
 		String tableName=null;
-		LinkedList<String>suggestedManufacturer=new LinkedList<>();
-		LinkedList<Manufacturer>searchedManu=myJDBC.selectAllFromTable("MANUFACTURER"); // do searching to get all the Manufacturer information into the linked list object.
 
 		LinkedList<Furniture> searchedResults=(LinkedList<Furniture>)myJDBC.selectTypeFromCategory(inputArray[1], inputArray[0]);
 		//get the result with specified type and category in a LinkedList
 
 		
-		// If cannot find anything, return directly
 		Algorithm obj=new Algorithm();
 		//generate an algorithm object
+		
+		String[]suggestedManu=null;
+		
 		//if category is chair
 		if(inputArray[1].equals("CHAIR")) {
 			result = obj.findCheapestSet(searchedResults,requiredTimes,"CHAIR");
 			tableName="CHAIR";
+			if(inputArray[0].equals("MESH")){
+				suggestedManu=new String[]{"Chairs R Us","Fine Office Supplies"};
+			}else if(inputArray[0].equals("TASK")){
+				suggestedManu=new String[]{"Chairs R Us","Office Furnishings"};
+			}else if(inputArray[0].equals("KNEELING")){
+				suggestedManu=new String[]{"Fine Office Supplies","Office Furnishings"};
+			}else if(inputArray[0].equals("EXECUTIVE")){
+				suggestedManu=new String[]{"Furniture Goods","Office Furnishings"};
+			}else if(inputArray[0].equals("ERGONOMIC")){
+				suggestedManu=new String[]{"Chairs R Us","Office Furnishings"};
+			}
+			
 		}
 		//if category is desk
 		else if(inputArray[1].equals("DESK")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"DESK");
 			tableName="DESK";
+			if(inputArray[0].equals("TRADITIONAL")){
+				suggestedManu=new String[]{"Academic Desks","Fine Office Supplies","Office Furnishings"};
+			}else if(inputArray[0].equals("ADJUSTABLE")){
+				suggestedManu=new String[]{"Academic Desks","Fine Office Supplies","Furniture Goods","Office Furnishings"};
+			}else if(inputArray[0].equals("STANDING")){
+				suggestedManu=new String[]{"Academic Desks","Fine Office Supplies","Furniture Goods"};
+			}
 		}
 		//if category is lamp
 		else if(inputArray[1].equals("LAMP")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"LAMP");
 			tableName="LAMP";
+			suggestedManu=new String[]{"Furniture Goods","Fine Office Supplies","Office Furnishings"};
+			
 		}
 		//if category is filing
 		else if(inputArray[1].equals("FILING")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"FILING");
 			tableName="FILING";
+			suggestedManu=new String[]{"Furniture Goods","Fine Office Supplies","Office Furnishings"};
+			if(inputArray[0].equals("SWING ARM")){
+				suggestedManu=new String[]{"Fine Office Supplies","Office Furnishings"};
+			}
 		}
 		if(result==null) {
-			for(int i=0;i<searchedManu.size();i++ ) {
-				for(int j=0;j<searchedResults.size();j++) {
-					if(searchedManu.get(i).getManuID().equals(((Furniture) searchedResults.get(j)).getManuID())) {
-						if(!suggestedManufacturer.contains(searchedManu.get(i).getName())) {
-							suggestedManufacturer.add(searchedManu.get(i).getName());
-						}
-					}
-				}
-			}// cannot find the correct order, do not change database, populate the list of suggested Manufacturer and write it to the output file.
-			writeFileException(suggestedManufacturer);
+			writeFileException(suggestedManu);
 			return -1;
 		}
 		else {
@@ -142,12 +158,12 @@ public class SupplyChain{
 	 * by creating FileWriter and write to file, then close the FileWriter.
 	 * and it calls GUIApp constructor that will show GUI to user for convenience and better user experience
 	 */
-	public void writeFileException( LinkedList<String>suggestedManufacturer) {
+	public void writeFileException( String[]suggestedManufacturer) {
 		try{
 			FileWriter myWriter=new FileWriter(outputFileName,true);
 			String output="Order cannot be fulfilled based on current inventory. Suggested manufacturers are ";
-			for(int i=0;i<suggestedManufacturer.size();i++) {
-				output+=suggestedManufacturer.get(i)+", ";
+			for(int i=0;i<suggestedManufacturer.length;i++) {
+				output+=suggestedManufacturer[i]+", ";
 			}
 			output=output.substring(0,output.length()-2);
 			output+=".";
