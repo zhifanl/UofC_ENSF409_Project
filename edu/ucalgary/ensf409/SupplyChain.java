@@ -98,46 +98,26 @@ public class SupplyChain{
 		if(inputArray[1].equals("CHAIR")) {
 			result = obj.findCheapestSet(searchedResults,requiredTimes,"CHAIR");
 			tableName="CHAIR";
-			if(inputArray[0].equals("MESH")){
-				suggestedManu=new String[]{"Chairs R Us","Fine Office Supplies"};
-			}else if(inputArray[0].equals("TASK")){
-				suggestedManu=new String[]{"Chairs R Us","Office Furnishings"};
-			}else if(inputArray[0].equals("KNEELING")){
-				suggestedManu=new String[]{"Fine Office Supplies","Office Furnishings"};
-			}else if(inputArray[0].equals("EXECUTIVE")){
-				suggestedManu=new String[]{"Furniture Goods","Office Furnishings"};
-			}else if(inputArray[0].equals("ERGONOMIC")){
-				suggestedManu=new String[]{"Chairs R Us","Office Furnishings"};
-			}
-			
+			suggestedManu=new String[]{"Office Furnishings","Chairs R Us","Furniture Goods","Fine Office Supplies"};
 		}
 		//if category is desk
 		else if(inputArray[1].equals("DESK")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"DESK");
 			tableName="DESK";
-			if(inputArray[0].equals("TRADITIONAL")){
-				suggestedManu=new String[]{"Academic Desks","Fine Office Supplies","Office Furnishings"};
-			}else if(inputArray[0].equals("ADJUSTABLE")){
-				suggestedManu=new String[]{"Academic Desks","Fine Office Supplies","Furniture Goods","Office Furnishings"};
-			}else if(inputArray[0].equals("STANDING")){
-				suggestedManu=new String[]{"Academic Desks","Fine Office Supplies","Furniture Goods"};
-			}
+			suggestedManu=new String[]{"Academic Desks","Office Furnishings","Furniture Goods","Fine Office Supplies"};
 		}
 		//if category is lamp
 		else if(inputArray[1].equals("LAMP")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"LAMP");
 			tableName="LAMP";
-			suggestedManu=new String[]{"Furniture Goods","Fine Office Supplies","Office Furnishings"};
+			suggestedManu=new String[]{"Office Furnishings","Furniture Goods","Fine Office Supplies"};
 			
 		}
 		//if category is filing
 		else if(inputArray[1].equals("FILING")) {
 			result=obj.findCheapestSet(searchedResults,requiredTimes,"FILING");
 			tableName="FILING";
-			suggestedManu=new String[]{"Furniture Goods","Fine Office Supplies","Office Furnishings"};
-			if(inputArray[0].equals("SWING ARM")){
-				suggestedManu=new String[]{"Fine Office Supplies","Office Furnishings"};
-			}
+			suggestedManu=new String[]{"Office Furnishings","Furniture Goods","Fine Office Supplies"};
 		}
 		if(result==null) {
 			writeFileException(suggestedManu);
